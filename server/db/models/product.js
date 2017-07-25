@@ -29,5 +29,5 @@ const Product = db.define('product', {
   }
 })
 
-//belongs to category or categoby on model?
+
 module.exports = Product
