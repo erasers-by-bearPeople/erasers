@@ -1,4 +1,4 @@
-const crypto = require('crypto')
+
 const Sequelize = require('sequelize')
 const db = require('../db')
 
@@ -15,6 +15,10 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  category: {
+    type: Sequelize.ENUM('category1', 'category2'),
+    allowNull: false
+  },
   inventory: {
     type: Sequelize.INTEGER,
     allowNull: false
@@ -26,3 +30,4 @@ const Product = db.define('product', {
 })
 
 //belongs to category or categoby on model?
+module.exports = Product
