@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
-const db = require('./index')
+const db = require('../db')
 
-rows: title, message, stars
+
 
 
 const Review = db.define('review', {
