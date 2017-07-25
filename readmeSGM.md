@@ -50,3 +50,22 @@
  + http://redux.js.org/
  Javascript Docs
  + https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
+
+
+Orders
+orderId
+complete
+sessionId
+
+Line item
+orderId
+lineItemId
+productId
+price
+quantity
+
+Product
+category
+image
+price
+description
