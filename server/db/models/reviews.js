@@ -1,7 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('./index')
 
-module.exports = db.define('review', {
+rows: title, message, stars
+
+
+const Review = db.define('review', {
     title: {
         type: Sequelize.STRING,
         allowNull: false
@@ -14,3 +17,5 @@ module.exports = db.define('review', {
         }
     }
 })
+
+module.exports = Review

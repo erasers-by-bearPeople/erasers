@@ -1,7 +1,7 @@
 const User = require('./user')
 const Review = require('./reviews')
 
-Review.belongsTo(User, {as: 'reviewer'})
+Review.belongsTo(User)
 Review.belongsTo(Product)
 
 
