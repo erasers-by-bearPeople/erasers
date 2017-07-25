@@ -1,8 +1,18 @@
 const User = require('./user')
-const Review = require('./reviews')
+const Product = require('./product')
+const Order = require('./order')
+const LineItem = require('./lineitem')
+const Review = require('./review')
 
-Review.belongsTo(User)
-Review.belongsTo(Product)
+Review.belongsTo(User) //userId will be added on Review source model
+Review.belongsTo(Product) //productId will be added on Review source model
+
+LineItem.belongsTo(Order) //orderId will be added on LineItem source model
+LineItem.belongsTo(Product) //productId will be added on LineItem source model
+
+//May need to add Order belongs to User ?? sessions?
+
+
 
 
 /**
@@ -20,5 +30,8 @@ Review.belongsTo(Product)
  */
 module.exports = {
     User,
-    Review
+    Review,
+    LineItem,
+    Order,
+    Product
 }
