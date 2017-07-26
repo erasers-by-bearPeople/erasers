@@ -11,6 +11,7 @@ Product.hasMany(Review)
 
 LineItem.belongsTo(Order) //orderId will be added on LineItem source model
 LineItem.belongsTo(Product) //productId will be added on LineItem source model
+Order.hasMany(LineItem, {onDelete: 'CASCADE'})
 
 //May need to add Order belongs to User ?? sessions?
 
