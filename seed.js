@@ -7,27 +7,32 @@ const _users = [
     {
         name: 'Noor',
         email: 'noor.grewal@berkeley.edu',
-        password: 'bro!'
+        password: 'my-net-crashed'
     },
     {
         name: 'Dennis',
-        email: 'dennis@email.com'
+        email: 'dennis@email.com',
+        password: 'bachelor-parties'
     },
     {
         name: 'Lina',
-        email: 'jones@email.com'
+        email: 'jones@email.com',
+        password: 'mountains'
     },
     {
         name: 'Shayne',
-        email: 'shayne@email.com'
+        email: 'shayne@email.com',
+        password: 'reggie'
     },
     {
         name: 'Tom',
         email: 'cody@email.com'
+        password: 'cody'
     },
     {
         name: 'Jeff',
-        email: 'jeff@email.com'
+        email: 'jeff@email.com',
+        password: 'im-a-fellow'
     }
 ]
 
