@@ -19,7 +19,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-router.put('/:id',(req, res, next) => {
+router.put('/:id', (req, res, next) => {
   Order.update(
     {
       complete: true
@@ -34,10 +34,8 @@ router.put('/:id',(req, res, next) => {
 })
 
 
-router.post('/:id',(req, res, next) => {
-  Order.update(
-    req.body
-    ,
+router.post('/:id', (req, res, next) => {
+  Order.update(req.body,
     {
       where: {
         id: req.params.id
@@ -46,3 +44,7 @@ router.post('/:id',(req, res, next) => {
     .then(order => res.json(order))
     .catch(next)
 })
+
+//router.delete('/:id', (req, res, next) => {
+//
+//})
