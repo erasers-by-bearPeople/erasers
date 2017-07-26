@@ -1,28 +1,44 @@
+
+### API Routes
+
+Pair 1 - dennis & Lina
+
 product routes
   all products (get)
-  by cat (filter not route)
-  search (filter not route)
-  individual products with reviews (get) think about
+  individual product with reviews (get)
   Add product (post)
   Update product (put)
   Delete Product (delete)
 
+  by category (filter not route) [where ])
+  search (filter not route)
+
+review routes
+  create new review (post)
+
 user routes
+  find all (get)
+  // updating user to admin... need admin status in user table
+  // route - put
+  delete user
+  update password (put)
 
 
+Pair 2 Shane and Noor
 
 lineItems routes
+( routes for active/ uncompleted order)
   add line item (post)
-  find all (get) (order routes get where order id = X)
   remove (delete)
   edit line (quantities)
+( route for completed order)
+  find all (get) (order routes get where order id = X)
 
 order routes
   find all get
-  find all where Completed (filter)
+  complete order (put - order completed  = true)
+  create shipping address (post)
+  find all where... (front end filter?)
 
-  checkout (put/post) need (address address)
-    - shipping info (post)
-    - put
 
-review routes
+
