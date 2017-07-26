@@ -128,27 +128,25 @@ const _reviews = [
 const _orders = [
   {
     complete: true,
-    sessionId: 'akdagfggauf632735'
+    userId: 1
   },
   {
     complete: false,
-    sessionId: 'jabdfgf8723252754'
+    userId: 2
   },
   {
     complete: true,
-    sessionId: 'dbaiuia378254d282'
+    userId: 3
   },
   {
-    complete: false,
-    sessionId: 'ahudad3726424284a'
+    complete: false
   },
   {
     complete: true,
-    sessionId: 'fgiuagf728762bahd'
+    userId: 4
   },
   {
-    complete: false,
-    sessionId: 'jkdadh2389724kjba'
+    complete: false
   }
 ]
 

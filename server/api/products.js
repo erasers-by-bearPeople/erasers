@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
 // find a product and its associated reviews
 router.get('/:productId', (req, res, next) => {
   const id = req.params.productId
-  Product.findOne({ where: {id}, include: [Review]})
+  Product.findOne({ where: {id}, include: [Review] })
     .then(product => res.status(200).json(product))
     .catch(next)
 })
