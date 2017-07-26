@@ -8,10 +8,10 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', (req, res, next) => {
+router.get('/:orderId', (req, res, next) => {
   Order.findAll({
     where: {
-      id: req.params.id
+      id: req.params.orderId
     }
   })
     .then(order => res.json(order))
@@ -19,14 +19,14 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-router.put('/:id', (req, res, next) => {
+router.put('/:orderId', (req, res, next) => {
   Order.update(
     {
       complete: true
     },
     {
       where: {
-        id: req.params.id
+        id: req.params.orderId
       }
     })
     .then(order => res.json(order))
@@ -34,17 +34,15 @@ router.put('/:id', (req, res, next) => {
 })
 
 
-router.post('/:id', (req, res, next) => {
-  Order.update(req.body,
-    {
-      where: {
-        id: req.params.id
-      }
-    })
+router.post('/', (req, res, next) => {
+  Order.create(req.body)
     .then(order => res.json(order))
     .catch(next)
 })
 
-//router.delete('/:id', (req, res, next) => {
-//
-//})
+router.delete('/:orderId', (req, res, next) => {
+  const id = req.params.orderId
+  Order.destroy({ where: {id} })
+    .then(() => res.status(204).send('order removed'))
+    .catch(next)
+})

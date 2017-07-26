@@ -7,10 +7,6 @@ const Order = db.define('order', {
     allowNull: false,
     defaultValue: false
   },
-  sessionId:{
-    type: Sequelize.STRING,
-    allowNull: false
-  },
   city:{
     type: Sequelize.STRING,
     allowNull: true

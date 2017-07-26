@@ -15,10 +15,10 @@ router.get('/:orderId', (req, res, next) => {
 })
 
 // get a line item by id
-router.get('/item/:id', (req, res, next) => {
+router.get('/item/:itemId', (req, res, next) => {
   LineItem.findAll({
     where: {
-      id: req.params.id
+      id: req.params.itemId
     }
   })
     .then((lineitem) => {
@@ -28,7 +28,8 @@ router.get('/item/:id', (req, res, next) => {
 
 
 // add a line item (post)
-router.post('/', (req, res, next) => {
+router.post('/:orderId', (req, res, next) => {
+  req.body.orderId = req.params.orderId
   LineItem.create(req.body)
     .then((created) => {
       res.json(created)
@@ -37,27 +38,24 @@ router.post('/', (req, res, next) => {
 
 
 // update a line item (quantities)(put)
-router.put('/item/:id', (req, res, next) => {
+router.put('/:itemId', (req, res, next) => {
   LineItem.update(req.body, {
-      where: {
-        id: req.params.id
-      }
+    where: {
+      id: req.params.itemId
     }
+  }
   ).then(updated => {
     res.json(updated)
   }).catch(next)
 })
 
 // delete a line item (destroy)
-router.delete('/item/:id', (req, res, next) => {
+router.delete('/:itemId', (req, res, next) => {
   LineItem.destroy({
     where: {
-      id: req.params.id
+      id: req.params.itemId
     }
   }).then((destroyed) => {
     res.json(destroyed)
   }).catch(next)
 })
-
-
-
