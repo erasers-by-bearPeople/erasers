@@ -10,6 +10,22 @@ const Order = db.define('order', {
   sessionId:{
     type: Sequelize.STRING,
     allowNull: false
+  },
+  city:{
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  street:{
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  state:{
+    type: Sequelize.STRING,
+    allowNull: true
+  },
+  zip: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 })
 
