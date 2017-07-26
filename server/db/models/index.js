@@ -29,9 +29,8 @@ LineItem.belongsTo(Product) //productId will be added on LineItem source model
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-    User,
-    Review,
-    LineItem,
-    Order,
-    Product
+  User,
+  Review,
+  LineItem,
+  Order,
 }
