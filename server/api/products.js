@@ -40,7 +40,7 @@ router.post('/:productId/review', (req, res, next) => {
 router.delete('/:productId', (req, res, next) => {
   const id = req.params.productId
   Product.destroy({ where: {id} })
-    .then(() => res.sendStatus(204))
+    .then(( ) => res.sendStatus(204))
     .catch(next)
 })
 
@@ -50,5 +50,3 @@ router.put('/:productId', (req, res, next) => {
     .then((updatedProduct) => res.status(202).json(updatedProduct))
     .catch(next)
 })
-
-
