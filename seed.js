@@ -26,7 +26,7 @@ const _users = [
     },
     {
         name: 'Tom',
-        email: 'cody@email.com'
+        email: 'cody@email.com',
         password: 'cody'
     },
     {
@@ -43,7 +43,7 @@ const _products = [
         price: 1000,
         category: 'category1',
         inventory: 1,
-        image: ''
+        image: 'image url 1'
     },
     {
         title: 'product 2',
