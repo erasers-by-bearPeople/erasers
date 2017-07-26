@@ -12,3 +12,17 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+router.put('/:userId', (req, res, next) => {
+  const id = req.params.userId
+  User.update(req.body, {where: {id}, returning: true})
+    .then(() => res.sendStatus(202))
+    .catch(next)
+})
+
+router.delete('/:userId', (req, res, next) => {
+  const id = req.params.userId
+  User.destroy({where: {id}})
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
