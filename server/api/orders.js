@@ -34,13 +34,8 @@ router.put('/:orderId', (req, res, next) => {
 })
 
 
-router.post('/:orderId', (req, res, next) => {
-  Order.update(req.body,
-    {
-      where: {
-        id: req.params.orderId
-      }
-    })
+router.post('/', (req, res, next) => {
+  Order.create(req.body)
     .then(order => res.json(order))
     .catch(next)
 })
