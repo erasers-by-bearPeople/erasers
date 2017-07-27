@@ -4,6 +4,7 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   Product.findAll()
+    // tk: 202?
     .then((products) => res.status(202).json(products))
     .catch(next)
 })
@@ -23,6 +24,8 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
+// tk: this would make more sense in a reviews router
+// The productId could go in req.body
 //create review of product
 router.post('/:productId/review', (req, res, next) => {
   const productId = req.params.productId

@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 router.put('/:userId', (req, res, next) => {
   const id = req.params.userId
   User.update(req.body, {where: {id}, returning: true})
-    .then(() => res.sendStatus(202))
+    .then(() => res.sendStatus(202)) // tk: 202?
     .catch(next)
 })
 

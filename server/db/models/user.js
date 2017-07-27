@@ -2,6 +2,11 @@ const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+/**
+ * tk: don't forget about the other requirements for users: there should be
+ * admin users and regular users, and there should be some way to specify that a user
+ * needs to reset their password
+ */
 const User = db.define('user', {
   name: {
     type: Sequelize.STRING,

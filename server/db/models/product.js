@@ -23,6 +23,9 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  /**
+   * tk: can you have more than one image?
+   */
   image: {
     type: Sequelize.STRING,
     defaultValue: 'images/defaultPic.jpg' //will we have urls for images or file folder?

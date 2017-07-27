@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
+/**
+ * tk: remember that orders can have multiple statuses - not just completed!
+ */
 const Order = db.define('order', {
   complete: {
     type: Sequelize.BOOLEAN,
