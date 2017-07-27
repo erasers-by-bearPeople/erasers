@@ -36,11 +36,12 @@ describe('Order routes', () => {
         .get('/api/orders/1')
         .expect(200)
         .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body[0].id).to.be.equal(1)
+          expect(res.body).to.be.an('object')
+          expect(res.body.id).to.be.equal(1)
         })
     })
     beforeEach(() => {
+      ///blue birdy stuff maybe
       return Order.create({
       })
       return Order.create({
