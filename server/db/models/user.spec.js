@@ -1,11 +1,11 @@
 const {expect} = require('chai')
-const db = require('../db')
+const db = require('../index')
 const User = db.model('user')
 
 /* global describe it beforeEach */
 
 describe('User model', () => {
-
+  //
   beforeEach(() => {
     return db.sync({force: true})
   })

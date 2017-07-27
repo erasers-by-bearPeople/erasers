@@ -15,6 +15,7 @@ describe('User routes', () => {
   describe('/api/users/', () => {
 
     const codysEmail = 'cody@puppybook.com'
+    const name = 'cody'
 
     beforeEach(() => {
       return User.create({

@@ -36,7 +36,10 @@ router.put('/:orderId', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Order.create(req.body)
-    .then(order => res.json(order))
+    .then((order) => {
+      req.session.orderId = order.id
+      res.json(order)
+    })
     .catch(next)
 })
 
