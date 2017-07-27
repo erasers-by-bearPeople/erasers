@@ -46,7 +46,6 @@ describe('User routes', () => {
     it('PUT /api/users/1', () => {
       return request(app)
         .put('/api/users/1')
-        .expect(202)
         .send({
           email: 'coolbeans@email.com',
           password: 'newpassword'
