@@ -1,7 +1,9 @@
 const {expect} = require('chai')
 const db = require('../index')
 const Order = db.model('order')
-//
+
+/* global describe it beforeEach */
+
 describe('Order model', () => {
   //
   beforeEach(() => {
@@ -22,7 +24,7 @@ describe('Order model', () => {
 
     it('orderid should be 1 I guess', () => {
     //  console.log(orderCreated)
-      expect(orderCreated.complete).to.be.false
+      expect(orderCreated.complete).to.be.equal(false)
       expect(orderCreated.id).to.be.equal(1)
       //expect(orderCreated.complete(false)).to.be.equal(true)
     })

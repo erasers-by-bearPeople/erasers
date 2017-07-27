@@ -5,6 +5,8 @@ const app = require('../../index')
 const Order = db.model('order')
 const LineItem = db.model('lineitem')
 
+/* global describe it beforeEach */
+
 describe('---- lineitem routes ---- ', () => {
   beforeEach(() => {
     return db.sync({force: true})
