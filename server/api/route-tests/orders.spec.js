@@ -1,35 +1,67 @@
-// const {expect} = require('chai')
-// const request = require('supertest')
-// const db = require('../db')
-// const app = require('../index')
-// const Order = db.model('user')
+const {expect} = require('chai')
+const request = require('supertest')
+const db = require('../../db')
+const app = require('../../index')
+const Order = db.model('order')
 //
-// describe('Order routes', () => {
+describe('Order routes', () => {
+
+  beforeEach(() => {
+    return db.sync({force: true})
+  });
 // //
-// //   beforeEach(() => {
-// //     //return db.sync({force: true})
-// //   });
+  describe('/api/orders/', () => {
 // //
-// //   describe('/api/users/', () => {
-// //
-// //     const codysEmail = 'cody@puppybook.com'
-// //
-// //     beforeEach(() => {
-// //       return Order.create({
-// //         email: codysEmail
-// //       })
-// //     })
-// //
-// //     it('GET /api/users', () => {
-// //       return request(app)
-// //         .get('/api/users')
-// //         .expect(200)
-// //         .then(res => {
-// //           expect(res.body).to.be.an('array')
-// //           expect(res.body[0].email).to.be.equal(codysEmail)
-// //         })
-// //     })
-// //
-//   }) // end describe('/api/orders')
+    //const codysEmail = 'cody@puppybook.com'
+
+    beforeEach(() => {
+      return Order.create({
+      })
+    })
+
+    it('GET /api/orders', () => {
+      return request(app)
+        .get('/api/orders')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('array')
+          expect(res.body[0].id).to.be.equal(1)
+        })
+    })
+
+    it('GET /api/orders/:id', () => {
+      return request(app)
+        .get('/api/orders/1')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('array')
+          expect(res.body[0].id).to.be.equal(1)
+        })
+    })
+    beforeEach(() => {
+      return Order.create({
+      })
+      return Order.create({
+      })
+    })
+    it('GET /api/orders/', () => {
+      return request(app)
+        .get('/api/orders')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('array')
+          expect(res.body.length).to.be.equal(2)
+        })
+    })
+    it('delete /api/orders/1', () => {
+      return request(app)
+        .delete('/api/orders/1')
+        .expect(204)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+        })
+    })
+
+  }) // end describe('/api/orders')
 //
-// }) // end describe('Orders routes')
+}) // end describe('Orders routes')
