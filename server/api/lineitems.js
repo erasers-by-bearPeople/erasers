@@ -3,10 +3,10 @@ const {LineItem} = require('../db/models')
 module.exports = router
 
 // get all lineitems
-router.get('/:orderId', (req, res, next) => {
+router.get('/', (req, res, next) => {
   LineItem.findAll({
     where: {
-      orderId: req.params.orderId
+      orderId: req.session.orderId
     }
   })
     .then((lineitem) => {
@@ -28,8 +28,8 @@ router.get('/item/:itemId', (req, res, next) => {
 
 
 // add a line item (post)
-router.post('/:orderId', (req, res, next) => {
-  req.body.orderId = req.params.orderId
+router.post('/', (req, res, next) => {
+  req.body.orderId = req.session.orderId
   LineItem.create(req.body)
     .then((created) => {
       res.json(created)
