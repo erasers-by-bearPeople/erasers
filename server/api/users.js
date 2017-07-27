@@ -16,7 +16,7 @@ router.get('/', (req, res, next) => {
 router.put('/:userId', (req, res, next) => {
   const id = req.params.userId
   User.update(req.body, {where: {id}, returning: true})
-    .then(updatedUser => res.status(202).json(updatedUser))
+    .then(updatedUser => res.json(updatedUser))
     .catch(next)
 })
 
