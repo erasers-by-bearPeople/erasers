@@ -2,9 +2,25 @@ const router = require('express').Router()
 const {Product, Review} = require('../db/models')
 module.exports = router
 
+
+router.param('productId', (req, res, next, productId) => {
+  Product.findById(productId)
+    .then(product => {
+      if (!product) {
+        const error = new Error('Not Found :(')
+        error.status = 404
+        next(error)
+      } else {
+        req.product = product
+        return next()
+      }
+    })
+})
+
+
 router.get('/', (req, res, next) => {
   Product.findAll()
-    .then((products) => res.status(202).json(products))
+    .then((products) => res.json(products))
     .catch(next)
 })
 
@@ -23,32 +39,15 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
-//create review of product
-router.post('/:productId/review', (req, res, next) => {
-  const productId = req.params.productId
-  const { title, message, userId } = req.body
-  Review.create({
-    title,
-    message,
-    userId,
-    productId
-  })
-    .then(review => res.status(201).json(review))
-    .catch(next)
-})
-
 router.put('/:productId', (req, res, next) => {
-  const id = req.params.productId
-  Product.update(req.body, { where: {id}, returning: true })
-    .then((updatedProduct) => res.status(202).json(updatedProduct))
+  req.product.update(req.body)
+    .then(updatedProduct => res.json(updatedProduct))
     .catch(next)
 })
 
 router.delete('/:productId', (req, res, next) => {
-  const id = req.params.productId
-  Product.destroy({ where: {id} })
-    .then(( ) => res.sendStatus(204))
+  req.product.destroy()
+    .then(() => res.sendStatus(204))
     .catch(next)
 })
-
 

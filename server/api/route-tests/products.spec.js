@@ -42,7 +42,7 @@ describe('Product routes', () => {
     it('GET /api/products', () => {
       return request(app)
         .get('/api/products')
-        .expect(202)
+        .expect(200)
         .then(res => {
           expect(res.body).to.be.an('array')
           expect(res.body[0].title).to.be.equal('Sea Slug')
@@ -56,21 +56,6 @@ describe('Product routes', () => {
         .then(res => {
           expect(res.body).to.be.an('object')
           expect(res.body.price).to.be.equal(575)
-        })
-    })
-
-    it('POST /api/products/:productId/review', () => {
-    return request(app)
-        .post('/api/products/1/review')
-        .send( {title: 'Love it', message: 'super great'
-        })
-        .expect(201)
-        .then(res => {
-            return Product.findOne({ where: {id:1}, include: [Review] })
-        })
-        .then(product => {
-          const title = product.reviews[0].dataValues.title
-            expect(title).to.be.equal('Love it')
         })
     })
 
@@ -97,7 +82,7 @@ describe('Product routes', () => {
       return request(app)
         .put(`/api/products/1`)
         .send( {price: 350} )
-        .expect(202)
+        .expect(200)
         .then(res => {
             return Product.findById(1)
         })
