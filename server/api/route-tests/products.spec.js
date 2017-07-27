@@ -5,6 +5,7 @@ const app = require('../../index')
 const Product = db.model('product')
 const Review = db.model('review')
 
+/* global describe it beforeEach */
 
 describe('Product routes', () => {
 
@@ -13,7 +14,7 @@ describe('Product routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
 
-  });
+  })
 
   describe('/api/products/', () => {
 

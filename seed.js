@@ -40,7 +40,7 @@ const _products = [
     title: 'batman',
     description: "batman's personal erasor stolen from joker",
     price: 1000,
-    category: 'category1',
+    category: 'Novelty',
     inventory: 1,
     image: 'image url 1'
   },
@@ -48,7 +48,7 @@ const _products = [
     title: 'product 2',
     description: 'description 2',
     price: 100,
-    category: 'category2',
+    category: 'Standard',
     inventory: 10,
     image: 'image url 2'
   },
@@ -56,7 +56,7 @@ const _products = [
     title: 'product 3',
     description: 'description 3',
     price: 1000,
-    category: 'category1',
+    category: 'Novelty',
     inventory: 100,
     image: 'image url 3'
   },
@@ -64,7 +64,7 @@ const _products = [
     title: 'product4',
     description: 'description 4',
     price: 10000,
-    category: 'category2',
+    category: 'Standard',
     inventory: 1000,
     image: 'image url 4'
   },
@@ -72,7 +72,7 @@ const _products = [
     title: 'product 5',
     description: 'description 5',
     price: 100000,
-    category: 'category1',
+    category: 'Novelty',
     inventory: 10000,
     image: 'image url 5'
   },
@@ -80,7 +80,7 @@ const _products = [
     title: 'product 6',
     description: 'description 6',
     price: 1000000,
-    category: 'category2',
+    category: 'Standard',
     inventory: 100000,
     image: 'image url 6'
   }

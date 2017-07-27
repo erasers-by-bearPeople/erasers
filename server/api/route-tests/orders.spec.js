@@ -3,12 +3,14 @@ const request = require('supertest')
 const db = require('../../db')
 const app = require('../../index')
 const Order = db.model('order')
-//
+
+/* global describe it beforeEach */
+
 describe('Order routes', () => {
 
   beforeEach(() => {
     return db.sync({force: true})
-  });
+  })
 // //
   describe('/api/orders/', () => {
 // //
