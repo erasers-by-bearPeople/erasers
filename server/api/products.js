@@ -37,6 +37,13 @@ router.post('/:productId/review', (req, res, next) => {
     .catch(next)
 })
 
+router.put('/:productId', (req, res, next) => {
+  const id = req.params.productId
+  Product.update(req.body, { where: {id}, returning: true })
+    .then((updatedProduct) => res.status(202).json(updatedProduct))
+    .catch(next)
+})
+
 router.delete('/:productId', (req, res, next) => {
   const id = req.params.productId
   Product.destroy({ where: {id} })
@@ -44,9 +51,4 @@ router.delete('/:productId', (req, res, next) => {
     .catch(next)
 })
 
-router.put('/:productId', (req, res, next) => {
-  const id = req.params.productId
-  Product.update(req.body, { where: {id}, returning: true })
-    .then((updatedProduct) => res.status(202).json(updatedProduct))
-    .catch(next)
-})
+
