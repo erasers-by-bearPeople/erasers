@@ -2,33 +2,35 @@ const router = require('express').Router()
 const {Order} = require('../db/models')
 module.exports = router
 
+router.param('orderId', (req, res, next, orderId) => {
+  Order.findById(orderId)
+    .then(order => {
+      if (!order) {
+        const error = new Error('Not found')
+        error.status = 404
+        next(error)
+      } else {
+        req.order = order
+        return next()
+      }
+    })
+})
+
+
 router.get('/', (req, res, next) => {
   Order.findAll()
     .then(orders => res.json(orders))
     .catch(next)
 })
 
-router.get('/:orderId', (req, res, next) => {
-  Order.findAll({
-    where: {
-      id: req.params.orderId
-    }
-  })
-    .then(order => res.json(order))
-    .catch(next)
+router.get('/:orderId', (req, res) => {
+  res.json(req.order)
 })
 
 
 router.put('/:orderId', (req, res, next) => {
-  Order.update(
-    {
-      complete: true
-    },
-    {
-      where: {
-        id: req.params.orderId
-      }
-    })
+  //if we take an order out of complete, we will need to change this maybe req.body
+  req.order.update({complete: true})
     .then(order => res.json(order))
     .catch(next)
 })
@@ -44,8 +46,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:orderId', (req, res, next) => {
-  const id = req.params.orderId
-  Order.destroy({ where: {id} })
-    .then(() => res.status(204).send('order removed'))
+  req.order.destroy()
+    .then(() => res.sendStatus(204))
     .catch(next)
 })
