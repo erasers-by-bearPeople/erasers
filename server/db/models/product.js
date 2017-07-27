@@ -15,6 +15,7 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  // tk: what if I want to add a new category?
   category: {
     type: Sequelize.ENUM('category1', 'category2'),
     allowNull: false
