@@ -11,10 +11,9 @@ describe('Order routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
-// //
+
   describe('/api/orders/', () => {
-// //
-    //const codysEmail = 'cody@puppybook.com'
+
 
     beforeEach(() => {
       return Order.create({
@@ -41,11 +40,9 @@ describe('Order routes', () => {
         })
     })
     beforeEach(() => {
-      ///blue birdy stuff maybe
       return Order.create({
       })
-      return Order.create({
-      })
+
     })
     it('GET /api/orders/', () => {
       return request(app)
