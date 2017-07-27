@@ -30,7 +30,7 @@ describe('---- lineitem routes ---- ', () => {
 
     describe('adds, saves and throws an error on an invalid line item update', () => {
 
-      it('adds a line item to an existing order', () => {
+      xit('adds a line item to an existing order', () => {
         return request(app)
           .post('/api/lineitems/1')
           .expect(200)
@@ -63,14 +63,7 @@ describe('---- lineitem routes ---- ', () => {
               console.error(err.message)
             })
         })
-
-      it('gets 500 for invalid update', function () {
-        return request(app)
-          .put('/api/lineitems/1')
-          .send({price: ''})
-          .expect(500)
-      })
-//      DELETE
+      
     })
   })
 })

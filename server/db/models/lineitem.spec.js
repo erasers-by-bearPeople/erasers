@@ -8,55 +8,30 @@ const db = require('../')
 
 describe('model test specs', () => {
   before(() => {
-    db.sync({force: true})
+    return db.sync({force: true})
   })
 
-
-  it('requires quantity', () => {
-    let lineitem = LineItem.create({
+  it('has require and quantity as fields', () => {
+    return LineItem.create({
       price: 1000,
+      quantity: 30
     })
-      .then((savedLineItem) => {
-      expect(savedLineItem.quantity).to.not.be.an(undefined)
+      .then(saved => {
+        expect(saved.price).to.be.equal(1000)
+        expect(saved.quantity).to.be.equal(30)
       })
   })
 
-  it('requires price', () => {
-    let lineitem = LineItem.create({
-      quantity: 1000
+  it('requires price and quantity to be integers', () => {
+    return LineItem.create({
+      price: 40,
+      quantity: 30
     })
-      .then((savedLineItem) => {
-        expect(savedLineItem.price).to.not.be.an(undefined)
+      .then(saved => {
+        expect(saved.price).to.be.equal(40)
+        expect(saved.quantity).to.be.equal(30)
       })
   })
 
-  xit('require price to be an integer', () => {
-    let lineitem = LineItem.create({
-      price: 500,
-      quantity: 1000
-    })
-      .then((savedLineItem) => {
-        expect(savedLineItem.price.type).to.equal('integer')
-      })
-  })
-
-  xit('throws an error if price is not an integer', () => {
-    let lineitem = LineItem.create({
-      price: '',
-      quantity: 500
-    })
-      .then((savedLineItem) => {
-        expect(savedLineItem.price.type).to.equal('integer')
-      })
-  })
-
-  xit('throws an error if quantity is not an integer', () => {
-    let lineitem = LineItem.create({
-      price: 500,
-      quantity: ''
-    })
-      .then((savedLineItem) => {
-        expect(savedLineItem.quantity.type).to.equal('integer')
-      })
-  })
 })
+
