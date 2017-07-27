@@ -33,7 +33,5 @@ describe('model test specs', () => {
       })
   })
 
-
-
-
 })
+
