@@ -66,7 +66,7 @@ const Order = () => {
                     </FormGroup>
                   </form>
                 </td>
-                <td><Button bsSize='xsmall'>
+                <td><Button bsSize='large'>
                   <Glyphicon glyph='glyphicon glyphicon-remove'/>
                 </Button></td>
               </tr>

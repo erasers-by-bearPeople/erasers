@@ -1,5 +1,6 @@
 import React  from 'react'
 //import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {Table,Button,Glyphicon,FormGroup,FormControl} from 'react-bootstrap'
 
 
@@ -7,20 +8,14 @@ const Orders = () => {
   //just to get the display going
   const wireArray = [
     {
-      id: 1,
-      descritption: 'White Bear',
-      price: 500,
-      quantity: 1,
-      category: 'Novelty',
-      image: '/images/white_bear.jpg'
+      id: 32,
+      complete: 'complete',
+      price: 1300
     },
     {
-      id: 2,
-      descritption: 'Pink Perl',
-      price: 600,
-      quantity: 1,
-      category: 'Standard',
-      image: '/images/pink_perl.jpg'
+      id: 43,
+      complete: 'active',
+      price: 1600
     }
   ]
   let total = 0
@@ -40,11 +35,9 @@ const Orders = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Descritption</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Remove</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -52,31 +45,20 @@ const Orders = () => {
               //adding up total (have another function for this)
               total += order.price
               return (<tr key={order.id}>
-                <td><img src={order.image} height='50px'/></td>
-                <td>{order.descritption}</td>
-                <td>{order.category}</td>
+                <td>{order.id}</td>
+                <td>{order.complete}</td>
                 <td>{formatter.format(order.price/100)}</td>
-                <td>
-                  <form>
-                    <FormGroup bsSize="small">
-                      <FormControl
-                        className="form-control"
-                        defaultValue={order.quantity} //this will be value with onchange
-                        required
-                      />
-                    </FormGroup>
-                  </form>
-                </td>
-                <td><Button bsSize='xsmall'>
-                  <Glyphicon glyph='glyphicon glyphicon-remove'/>
-                </Button></td>
+
+                <td><Link to="/orderdetail"><Button bsSize='small'>
+                  <Glyphicon glyph='glyphicon glyphicon-pencil'/>
+                </Button></Link></td>
               </tr>
               )
             })}
             <tr>
-              <th colSpan='3'>Total:</th>
+              <th colSpan='2'>Total:</th>
               <th>{formatter.format(total/100)}</th>
-              <th colSpan='2'></th>
+              <th colSpan='1'></th>
             </tr>
           </tbody>
         </Table>
