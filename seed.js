@@ -37,52 +37,52 @@ const _users = [
 
 const _products = [
   {
-    title: 'batman',
-    description: "batman's personal erasor stolen from joker",
-    price: 1000,
+    title: 'Action Pack',
+    description: 'The only crime these erasers fight are mistakes',
+    price: 425,
     category: 'Novelty',
     inventory: 1,
-    image: 'image url 1'
+    image: '/images/marvel.jpg'
   },
   {
-    title: 'product 2',
-    description: 'description 2',
+    title: 'Jungle Buddies',
+    description: 'Turn a plain desk into an adventurous animal kingdom with this set of 7 erasers.',
     price: 100,
-    category: 'Standard',
+    category: 'Novelty',
     inventory: 10,
-    image: 'image url 2'
+    image: '/images/animals.jpg'
   },
   {
-    title: 'product 3',
-    description: 'description 3',
-    price: 1000,
+    title: 'Fast Food Fun',
+    description: 'Each of these high calorie delights is made of soft rubber, and is functional as well as adorable! Set includes 6 pieces',
+    price: 850,
     category: 'Novelty',
     inventory: 100,
-    image: 'image url 3'
+    image: '/images/ffood.jpg'
   },
   {
-    title: 'product4',
-    description: 'description 4',
-    price: 10000,
+    title: 'Just Desserts',
+    description: 'Try not to take a bite when you erase mistakes with these tasty treats (not actually edible).  This set includes 6 pieces.',
+    price: 975,
+    category: 'Novelty',
+    inventory: 1000,
+    image: '/images/desserts.jpg'
+  },
+  {
+    title: 'Crayon, Crayoff',
+    description: 'No worries about drawings on the wall with this colorful set, watch as your confused child tries to color to no avail',
+    price: 350,
+    category: 'Novelty',
+    inventory: 100,
+    image: '/images/crayons.jpg'
+  },
+  {
+    title: 'MONO eraser',
+    description: `Subborn pencil marks on your page? Not with the MONO eraser around...those marks...they're so gone`,
+    price: 275,
     category: 'Standard',
     inventory: 1000,
-    image: 'image url 4'
-  },
-  {
-    title: 'product 5',
-    description: 'description 5',
-    price: 100000,
-    category: 'Novelty',
-    inventory: 10000,
-    image: 'image url 5'
-  },
-  {
-    title: 'product 6',
-    description: 'description 6',
-    price: 1000000,
-    category: 'Standard',
-    inventory: 100000,
-    image: 'image url 6'
+    image: '/images/pinkSing.jpg'
   }
 ]
 
