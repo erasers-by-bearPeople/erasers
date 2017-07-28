@@ -4,5 +4,13 @@
  * having to figure out which file they belong to!
  */
 export {default as Main} from './main'
+export {default as OrderDetail} from './OrderDetail'
+export {default as Orders} from './Orders'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
+
+
+
+
+
+export {default as SingleProduct} from './SingleProduct'

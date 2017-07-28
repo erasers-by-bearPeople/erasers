@@ -17,8 +17,10 @@ const Main = (props) => {
 
   return (
     <div>
+
       <Navbar />
-      <h1>BOILERMAKER</h1>
+      <h1>Erasers!Erasers!Erasers!</h1>
+
       {children}
     </div>
   )
