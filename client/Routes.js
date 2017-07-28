@@ -27,11 +27,10 @@ class Routes extends Component {
             <Switch>
 
               {/* Routes placed here are available to all visitors */}
+              <Route exact path='/products/:productId' component={SingleProduct} />
+              <Route path="/products" component={Products} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
-              <Route path="/products" component={Products} />
-              <Route exact path='/products/:productId' component={SingleProduct} />
-
               {
                 isLoggedIn ?
                   <Switch>
