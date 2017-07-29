@@ -1,7 +1,7 @@
 /* -----------------    IMPORTS     ------------------ */
 
 import axios from 'axios'
-import history from '../history'
+//import history from '../history'
 
 
 /* -----------------    ACTION TYPES     ------------------ */
@@ -31,9 +31,9 @@ export const singleProduct = (id) => {
 
 export default function (state = {}, action) {
   switch (action.type) {
-    case GET_PRODUCT:
-      return action.product
-    default:
-      return state
+  case GET_PRODUCT:
+    return action.product
+  default:
+    return state
   }
 }
