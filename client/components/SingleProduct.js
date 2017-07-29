@@ -14,7 +14,7 @@ import { singleProduct } from '../store'
 //   }
 // }
 
-class SingleProduct extends React.Component() {
+class SingleProduct extends React.Component {
 
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.productId)
