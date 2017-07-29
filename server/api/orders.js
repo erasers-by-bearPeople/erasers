@@ -37,12 +37,16 @@ router.put('/:orderId', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
-  Order.create(req.body)
-    .then((order) => {
-      req.session.orderId = order.id
-      res.json(order)
-    })
-    .catch(next)
+  if(req.session.orderId){
+    res.json(req.session.orderId)
+  }else{
+    Order.create(req.body)
+      .then((order) => {
+        req.session.orderId = order.id
+        res.json(order.id)
+      })
+      .catch(next)
+  }
 })
 
 router.delete('/:orderId', (req, res, next) => {

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {LineItem} = require('../db/models')
+const {LineItem, Product} = require('../db/models')
 module.exports = router
 
 // get all lineitems
@@ -7,7 +7,8 @@ router.get('/', (req, res, next) => {
   LineItem.findAll({
     where: {
       orderId: req.session.orderId
-    }
+    },
+    include:[Product]
   })
     .then((lineitem) => {
       res.json(lineitem)
@@ -16,7 +17,7 @@ router.get('/', (req, res, next) => {
 
 // get a line item by id
 router.get('/item/:itemId', (req, res, next) => {
-  LineItem.findAll({
+  LineItem.findOne({
     where: {
       id: req.params.itemId
     }
@@ -29,8 +30,13 @@ router.get('/item/:itemId', (req, res, next) => {
 
 // add a line item (post)
 router.post('/', (req, res, next) => {
-  req.body.orderId = req.session.orderId
-  LineItem.create(req.body)
+  const lineItem = {
+    price: req.session.product.price,
+    quantity: 1,
+    orderId: req.session.orderId,
+    productId: req.session.product.id
+  }
+  LineItem.create(lineItem)
     .then((created) => {
       res.json(created)
     }).catch(next)
@@ -38,10 +44,11 @@ router.post('/', (req, res, next) => {
 
 
 // update a line item (quantities)(put)
-router.put('/:itemId', (req, res, next) => {
-  LineItem.update(req.body, {
+router.put('/', (req, res, next) => {
+
+  LineItem.update({quantity: req.body.quantity}, {
     where: {
-      id: req.params.itemId
+      id: req.body.id
     }
   }
   ).then(updated => {
