@@ -37,7 +37,7 @@ export const updateQuanityLineItem = (item) =>
   dispatch =>
     axios.put('/api/lineitems/',item)
       .then(res =>
-        dispatch(updateLineItemQuantity(res.data)))
+        dispatch(updateLineItemQuantity(item)))
       .catch(err => console.log(err))
 
 export const deleteLineItem = (id) =>

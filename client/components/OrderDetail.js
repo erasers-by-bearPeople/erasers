@@ -101,6 +101,7 @@ const mapDispatchToProps = (dispatch) => {
     handleOnChange(event){
       const value = +event.target.value
       const id = +event.target.dataset.id
+      console.log({quantity: value, id: id})
       dispatch(updateQuanityLineItem({quantity: value, id: id}))
     }
   }
