@@ -1,39 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-const Products = () => {
+const Products = (props) => {
 
-//  dummy list of products just to fire up the front-end
-  const Products = [
-    {
-      id: 1,
-      title: 'Batman Erasor',
-      description: 'a very powerful eraser',
-      price: 1000,
-      category: 'Novelty',
-      inventory: 1,
-      image: 'images/batmanErasor.jpg'
-    },
-    {
-      id: 2,
-      title: 'Joker Erasor',
-      description: 'a criminally insane eraser',
-      price: 10000,
-      category: 'Novelty',
-      inventory: 1,
-      image: 'images/jokerErasor.jpg'
-    },
-    {
-      id: 3,
-      title: 'Penguin Erasor',
-      description: 'a very interesting eraser',
-      price: 100,
-      category: 'Standard',
-      inventory: 1,
-      image: 'images/penguinErasor.jpg'
-    }
-
-  ]
+  const products = props.products
+  console.log(products)
 
   return (
     <div className="container">
@@ -43,7 +15,7 @@ const Products = () => {
           {/*Header*/}
           <div className="col-md-12">
             <h4>Products</h4>
-            <h5>Products Available: {Products.length}</h5>
+            <h5>Products Available: {products.length}</h5>
           </div>
 
           {/*Refine by Search*/}
@@ -65,24 +37,29 @@ const Products = () => {
           </div>
 
           {/*product listing*/}
-          <div className="col-md-12">
+          <div className="row">
             {
-              Products.map((product) => {
+              products && products.map((product) => {
                 return (
                   <div className="col-md-4" key={product.id}>
-                    <div className="product-card col-md-12">
-                      <button className="btn btn-info" value={product.id}>+</button>
-                      <div className="product-card-content col-md-6">
-                        <p>Name: {product.title}</p>
-                        <label>Cost: </label> ${product.price}
-                        <p>Left: {product.inventory}!</p>
-                      </div>
-                      <div className="product-card-action col-md-6">
-                        <Link to={`/products/${product.id}`}>
-                          See more details...
-                        </Link>
-                      </div>
-                    </div>
+                    <p>Name: {product.title}</p>
+                    <img src={product.image} className="products_image"/>
+                    <label>Cost: ${product.price}</label>
+                    <p>In stock: {product.inventory}!</p>
+                    <p>
+                      Rating:
+                      {
+                        Array(product.rating).fill('filler').map((element, index) => {
+                          return (
+                            <i className="glyphicon glyphicon-star" key={index}> </i>
+                          )
+                        })
+                      }
+                    </p>
+                    <Link to={`/products/${product.id}`}>
+                      See more details...
+                    </Link>
+                    <button className="btn btn-info" value={product.id}>+</button>
                   </div>
                 )
               })
@@ -95,4 +72,10 @@ const Products = () => {
   )
 }
 
-export default Products
+const mapState = (state) => {
+  return {
+    products: state.products
+  }
+}
+
+export default connect(mapState)(Products)
