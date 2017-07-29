@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { singleProduct } from '../store'
+import { singleProduct,  makeOrderId, addToOrder} from '../store'
 
 class SingleProduct extends Component {
 
@@ -29,7 +29,13 @@ class SingleProduct extends Component {
                 <h3>${product.price / 100}</h3>
               </td>
               <td>
-                <button className='btn btn-info' value={product.id}>
+                {/* glyphicon glyphicon-shopping-cart */}
+                <button
+                  className='btn btn-info'
+                  value={product.id}
+                  data-name={product.title}
+                  data-id={product.id}
+                  onClick={this.props.handleOnClick}>
                   Add To Cart
                 </button>
               </td>
@@ -60,11 +66,22 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     fetchSingleProduct(id) {
       dispatch(singleProduct(id))
+    },
+    handleOnClick(event){
+      event.preventDefault()
+      if(confirm(`Please confirm adition of ...${event.target.dataset.name}`)){
+        dispatch(makeOrderId())
+          .then(()=>{
+            dispatch(addToOrder())
+            ownProps.history.push('/orderdetail')
+          })
+      }
     }
+
   }
 }
 

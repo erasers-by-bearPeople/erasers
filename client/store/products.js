@@ -31,9 +31,9 @@ export const fetchProducts = () => {
 
 export default function (products = [], action) {
   switch (action.type) {
-    case GET_PRODUCTS:
-      return action.products
-    default:
-      return products
+  case GET_PRODUCTS:
+    return action.products
+  default:
+    return products
   }
 }

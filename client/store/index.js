@@ -4,11 +4,15 @@ import thunkMiddleware from 'redux-thunk'
 import user from './user'
 import product from './product'
 import products from './products'
+import orders from './orders'
+import lineitems from './lineitems'
 
 const reducer = combineReducers({
   user,
   product,
-  products
+  products,
+  orders,
+  lineitems
 })
 
 
@@ -19,5 +23,5 @@ export default store
 export * from './user'
 export * from './product'
 export * from './products'
-
-
+export * from './orders'
+export * from './lineitems'
