@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
     },
     handleOnClick(event){
       event.preventDefault()
-      if(confirm(`Please confirm adition of ...${event.target.dataset.name}`)){
+      if(confirm(`Please confirm addition of ${event.target.dataset.name}`)){
         dispatch(makeOrderId())
           .then(()=>{
             dispatch(addToOrder())

@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 const Products = (props) => {
 
   const products = props.products
-  console.log(products)
 
   return (
     <div className="container">
@@ -42,10 +41,13 @@ const Products = (props) => {
               products && products.map((product) => {
                 return (
                   <div className="col-md-4" key={product.id}>
-                    <p>Name: {product.title}</p>
-                    <img src={product.image} className="products_image"/>
+                    <h3>{product.title}</h3>
+                     <Link to={`/products/${product.id}`}>
+                       <img src={product.image} className="products_image"/>
+                    </Link>
+
                     <label>Cost: ${product.price}</label>
-                    <p>In stock: {product.inventory}!</p>
+                    <p>In stock: {product.inventory}</p>
                     <p>
                       Rating:
                       {
@@ -56,9 +58,7 @@ const Products = (props) => {
                         })
                       }
                     </p>
-                    <Link to={`/products/${product.id}`}>
-                      See more details...
-                    </Link>
+
                     <button className="btn btn-info" value={product.id}>+</button>
                   </div>
                 )
