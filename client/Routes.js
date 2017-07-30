@@ -4,7 +4,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount} from './components'
+import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount, ManageProduct} from './components'
 import {me} from './store'
 
 /**
@@ -38,6 +38,7 @@ class Routes extends Component {
                     <Route path="/orders" component={Orders} />
                     <Route path="/orderdetail" component={OrderDetail} />
                     <Route path="/account" component={UserAccount} />
+                    <Route path="/management/products" component={ManageProduct} />
                   </Switch> : null
               }
               {/* Displays our Products component as a fallback */}
