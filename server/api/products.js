@@ -28,14 +28,19 @@ router.get('/', (req, res, next) => {
 router.get('/:productId', (req, res, next) => {
   const id = req.params.productId
   Product.findOne({ where: {id}, include: [Review] })
-    .then(product => res.status(200).json(product))
+    .then((product) => {
+      req.session.product = product
+      return res.status(200).json(product)
+    })
     .catch(next)
 })
 
 //create new product
 router.post('/', (req, res, next) => {
   Product.create(req.body)
-    .then(product => res.status(201).json(product))
+    .then((product) => {
+      return res.status(201).json(product)
+    })
     .catch(next)
 })
 
@@ -50,4 +55,3 @@ router.delete('/:productId', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
-

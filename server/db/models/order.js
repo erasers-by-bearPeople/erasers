@@ -2,20 +2,29 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Order = db.define('order', {
-  complete: {
-    type: Sequelize.BOOLEAN,
+  status: {
+    type:   Sequelize.ENUM,
+    values: ['active', 'pending', 'complete'],
     allowNull: false,
-    defaultValue: false
+    defaultValue: 'active'
   },
-  city:{
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  city: {
     type: Sequelize.STRING,
     allowNull: true
   },
-  street:{
+  street: {
     type: Sequelize.STRING,
     allowNull: true
   },
-  state:{
+  state: {
     type: Sequelize.STRING,
     allowNull: true
   },
