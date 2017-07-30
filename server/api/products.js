@@ -30,7 +30,7 @@ router.get('/:productId', (req, res, next) => {
   Product.findOne({ where: {id}, include: [Review] })
     .then((product) => {
       req.session.product = product
-      res.status(200).json(product)
+      return res.status(200).json(product)
     })
     .catch(next)
 })
@@ -38,7 +38,9 @@ router.get('/:productId', (req, res, next) => {
 //create new product
 router.post('/', (req, res, next) => {
   Product.create(req.body)
-    .then(product => res.status(201).json(product))
+    .then((product) => {
+      return res.status(201).json(product)
+    })
     .catch(next)
 })
 
