@@ -34,8 +34,8 @@ router.post('/', (req, res, next) => {
   const lineItem = {
     price: req.session.product.price,
     quantity: 1,
-    orderId: req.session.orderId,
-    productId: req.session.product.id
+    orderId: +req.session.orderId,
+    productId: +req.session.product.id
   }
   LineItem.create(lineItem)
     .then((created) => {
