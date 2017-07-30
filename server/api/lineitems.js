@@ -4,14 +4,15 @@ module.exports = router
 
 // get all lineitems
 router.get('/', (req, res, next) => {
+  const orderId = +req.session.orderId
   LineItem.findAll({
     where: {
-      orderId: req.session.orderId
+      orderId: orderId
     },
     include:[Product]
   })
     .then((lineitem) => {
-      res.json(lineitem)
+      return res.status(200).json(lineitem)
     }).catch(next)
 })
 
@@ -38,7 +39,7 @@ router.post('/', (req, res, next) => {
   }
   LineItem.create(lineItem)
     .then((created) => {
-      res.json(created)
+      return res.json(created)
     }).catch(next)
 })
 
@@ -62,7 +63,7 @@ router.delete('/:itemId', (req, res, next) => {
     where: {
       id: req.params.itemId
     }
-  }).then((destroyed) => {
-    res.json(destroyed)
+  }).then(() => {
+    res.sendStatus(202)
   }).catch(next)
 })
