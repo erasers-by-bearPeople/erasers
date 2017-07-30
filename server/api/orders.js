@@ -30,7 +30,6 @@ router.get('/:orderId', (req, res) => {
 
 router.put('/:orderId', (req, res, next) => {
   //if we take an order out of complete, we will need to change this maybe req.body
-  console.log("!!!!!!!")
   req.order.update(req.body)
     .then(order => res.json(order))
     .catch(next)

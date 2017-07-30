@@ -29,13 +29,11 @@ export const makeOrderId = () =>
 
 
 export const completeCheckout = (orderDetails) =>         dispatch =>
-console.log(orderDetails)
-    // axios.put(`/api/orders/${orderDetails}`, orderDetails)
-    // .then(() => console.log('****THUNK DETAILS', orderDetails))
-    // .then(res => dispatch(checkoutOrder(res.data)))
-    //  .then(browserHistory.replace('/confirmation'))
-    //   .catch(console.error)
-      //.catch(err => console.log(err))
+    axios.put(`/api/orders/${orderDetails.orderId}`, orderDetails)
+    .then(res => dispatch(checkoutOrder(res.data)))
+     .then(browserHistory.replace('/confirmation'))
+      .catch(console.error)
+      .catch(err => console.log(err))
 
 
 
