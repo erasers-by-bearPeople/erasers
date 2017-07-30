@@ -24,7 +24,7 @@ router.get('/item/:itemId', (req, res, next) => {
     }
   })
     .then((lineitem) => {
-      res.json(lineitem)
+      return res.json(lineitem)
     }).catch(next)
 })
 
@@ -53,7 +53,7 @@ router.put('/', (req, res, next) => {
     }
   }
   ).then(updated => {
-    res.json(updated)
+    return res.json(updated)
   }).catch(next)
 })
 
@@ -64,6 +64,6 @@ router.delete('/:itemId', (req, res, next) => {
       id: req.params.itemId
     }
   }).then(() => {
-    res.sendStatus(202)
+    return res.sendStatus(202)
   }).catch(next)
 })
