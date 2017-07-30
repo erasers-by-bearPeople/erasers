@@ -53,7 +53,7 @@ const _products = [
   {
     title: 'Jungle Buddies',
     description: 'Turn a plain desk into an adventurous animal kingdom with this set of 7 erasers.',
-    price: 100,
+    price: 500,
     category: 'Novelty',
     inventory: 10,
     image: '/images/animals.jpg'
@@ -97,24 +97,28 @@ const _reviews = [
     title: 'review 1',
     message: 'this is the first message',
     userId: 1,
+    rating: 5,
     productId: 1
   },
   {
     title: 'review 2',
     message: 'this is the second message',
     userId: 2,
+    rating: 5,
     productId: 2
   },
   {
     title: 'review 3',
     message: 'this is the third message',
     userId: 3,
+    rating: 5,
     productId: 3
   },
   {
     title: 'review 4',
     message: 'this is the fourth message',
     userId: 4,
+    rating: 3,
     productId: 4
   },
   {
@@ -133,26 +137,38 @@ const _reviews = [
 
 const _orders = [
   {
-    complete: true,
-    userId: 1
+    status: 'active',
+    userId: 1,
+    name: 'Noor',
+    email: 'noor.grewal@berkeley.edu',
   },
   {
-    complete: false,
-    userId: 2
+    status: 'active',
+    userId: 2,
+    name: 'Noor',
+    email: 'noor.grewal@berkeley.edu',
   },
   {
-    complete: true,
-    userId: 3
+    status: 'pending',
+    userId: 3,
+    name: 'Noor',
+    email: 'noor.grewal@berkeley.edu',
   },
   {
-    complete: false
+    status: 'complete',
+    name: 'Noor',
+    email: 'noor.grewal@berkeley.edu',
   },
   {
-    complete: true,
-    userId: 4
+    status: 'complete',
+    userId: 4,
+    name: 'Noor',
+    email: 'noor.grewal@berkeley.edu',
   },
   {
-    complete: false
+    status: 'pending',
+    name: 'Dennis',
+    email: 'dennis@email.com',
   }
 ]
 
