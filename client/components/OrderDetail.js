@@ -73,6 +73,7 @@ class LineItem extends Component {
                 </tr> */}
               </tbody>
             </Table>
+            <button type="submit" className="btn btn-primary">Checkout</button>
           </div>
         </div>
       )
