@@ -30,6 +30,7 @@ class LineItem extends Component {
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Remove</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -64,14 +65,15 @@ class LineItem extends Component {
                         />
                       </Button>
                     </td>
+                    <td>{formatter.format((item.price * item.quantity)/100)}</td>
                   </tr>
                   )
                 })}
-                {/* <tr>
+                <tr>
                   <th colSpan='3'>Total:</th>
                   <th>{formatter.format(total/100)}</th>
-                  <th colSpan='2'></th>
-                </tr> */}
+                  <th colSpan='3'></th>
+                </tr>
               </tbody>
             </Table>
             <Link to={`/checkout/${this.props.lineitems[0].orderId}`} >
