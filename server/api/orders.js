@@ -28,9 +28,9 @@ router.get('/:orderId', (req, res) => {
 })
 
 
-router.put('/:orderId', (req, res, next) => {
-  //if we take an order out of complete, we will need to change this maybe req.body
-  req.order.update(req.body)
+router.put('/', (req, res, next) => {
+  const id = req.session.orderId
+  Order.update(req.body, {where: {id}})
     .then(order => res.json(order))
     .catch(next)
 })
