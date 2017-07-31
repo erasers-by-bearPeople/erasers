@@ -8,13 +8,9 @@ const OrderConfirmation = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userCheckout: state.orders.userCheckout
-  }
-}
 
-export default connect(mapStateToProps)(OrderConfirmation)
+
+
 
 
 

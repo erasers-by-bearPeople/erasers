@@ -29,11 +29,11 @@ class Checkout extends React.Component {
         <form onSubmit={props.handleCheckout}>
           <div className="form-group">
             <label htmlFor="formName">Name</label>
-            <input onChange={props.handleNameChange} type="text" className="form-control" name="formName" placeholder="Enter full name" required />
+            <input type="text" className="form-control" name="formName" placeholder="Enter full name" required />
           </div>
           <div className="form-group">
             <label htmlFor="formEmail">Email Address</label>
-            <input onChange={props.handleEmailChange} type="email" className="form-control" name="formEmail" placeholder="Enter email" required />
+            <input type="email" className="form-control" name="formEmail" placeholder="Enter email" required />
           </div>
           <div className="form-group">
             <label htmlFor="formStreet">Street</label>
