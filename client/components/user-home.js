@@ -1,27 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 const UserHome = (props) => {
 
-  const {email} = props
+  const {user} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <h3>Welcome, {user.email}</h3>
+      {
+        user.changePassword ? 
+        <div>
+          <Link to={`/management/user/${user.id}`}><h2>Must Change Password! Click on Link!></h2></Link>
+        </div>
+        : null
+      }
     </div>
-  );
-};
+  )
+}
 
 /**
  * CONTAINER
  */
 const mapState = (state) => {
   return {
-    email: state.user.email
+    user: state.user
   }
 }
 

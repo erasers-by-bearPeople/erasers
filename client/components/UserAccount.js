@@ -16,16 +16,13 @@ class UserAccount extends React.Component {
 					<h4>Order History: <Link to={`/orders/${id}`}>Order History</Link></h4>
 				</div>
         <div>
-          <Link to="/user/update">Update Account Profile</Link>
-        </div>
-        <div>
           {
             isAdmin ?
             <div>
               <h3>Administrative Privileges</h3>
               <p><Link to="/management/products">Manage Eraser Products</Link></p>
               <p><Link to="/orders/management">Manage Orders</Link></p>
-              <p><Link to="/user/management">Manage User Accounts</Link></p>
+              <p><Link to="/management/user">Manage User Accounts</Link></p>
             </div>
             : null
           }
@@ -40,13 +37,13 @@ const mapState = state => {
     id: state.user.id,
     name: state.user.name,
     email: state.user.email,
-    isAdmin: state.user.isAdmin
+    isAdmin: state.user.isAdmin,
+    account: state.account
   })
 }
 
 const mapDispatch = dispatch => {
   return ({
-
   })
 }
 
