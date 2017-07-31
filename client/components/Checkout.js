@@ -99,7 +99,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     handleCheckout(event) {
@@ -114,6 +114,9 @@ const mapDispatchToProps = (dispatch) => {
       const status = 'pending'
       const orderDetails = { email, name, street, city, state, zip, status}
       dispatch(completeCheckout(orderDetails))
+      .then(() => {
+        return ownProps.history.push('/confirmation')
+      })
     },
     fetchLineItems() {
       dispatch(fetchLineItems())
