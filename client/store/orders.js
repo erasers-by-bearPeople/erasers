@@ -36,12 +36,11 @@ export const makeOrderId = () =>
 
 
 
-export function completeCheckout(orderDetails, history) {
+export function completeCheckout(orderDetails) {
   return function thunk (dispatch) {
     return axios.put('/api/orders', orderDetails)
     .then(res => {
       dispatch(checkoutOrder(res.data))
-      history.push('/confirmation')
     })
       .catch(err => {
         console.log(err)
