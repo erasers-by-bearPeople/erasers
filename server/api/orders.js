@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
+const {Order, LineItem} = require('../db/models')
 module.exports = router
 
 router.param('orderId', (req, res, next, orderId) => {
@@ -23,6 +23,17 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/user', (req, res, next) => {
+  Order.findAll({
+    where: {
+      userId: req.session.passport.user
+    },
+    include: [LineItem]
+  })
+    .then(orders => res.json(orders))
+    .catch(next)
+})
+
 router.get('/:orderId', (req, res) => {
   return res.json(req.order)
 })
@@ -30,7 +41,7 @@ router.get('/:orderId', (req, res) => {
 
 router.put('/:orderId', (req, res, next) => {
   //if we take an order out of complete, we will need to change this maybe req.body
-  req.order.update({complete: true})
+  req.order.update(req.body)
     .then(order => res.json(order))
     .catch(next)
 })
@@ -40,6 +51,9 @@ router.post('/', (req, res, next) => {
   if(req.session.orderId){
     return res.json(req.session.orderId)
   }else{
+    if(req.session.id){
+      req.body.userId = req.session.passport.user
+    }
     Order.create(req.body)
       .then((order) => {
         req.session.orderId = order.id
