@@ -6,13 +6,15 @@ import product from './product'
 import products from './products'
 import orders from './orders'
 import lineitems from './lineitems'
+import review from './review'
 
 const reducer = combineReducers({
   user,
   product,
   products,
   orders,
-  lineitems
+  lineitems,
+  review
 })
 
 
@@ -25,3 +27,4 @@ export * from './product'
 export * from './products'
 export * from './orders'
 export * from './lineitems'
+export * from './review'

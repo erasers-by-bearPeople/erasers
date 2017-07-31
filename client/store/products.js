@@ -7,6 +7,7 @@ import history from '../history'
 /* -----------------    ACTION TYPES     ------------------ */
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
+const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -16,6 +17,13 @@ const getProducts = (products) => {
     products
   }
 }
+
+export const setFilter = filterId => {
+  return {
+    type: FILTER_PRODUCTS,
+    filterId: +filterId
+  };
+};
 
 
 /* ------------       THUNK CREATORS     ------------------ */

@@ -48,6 +48,7 @@ const _products = [
     price: 425,
     category: 'Novelty',
     inventory: 1,
+    rating: 5,
     image: '/images/marvel.jpg'
   },
   {
@@ -103,6 +104,13 @@ const _reviews = [
   {
     title: 'review 2',
     message: 'this is the second message',
+    userId: 4,
+    rating: 2,
+    productId: 1
+  },
+  {
+    title: 'review 2',
+    message: 'this is the second message',
     userId: 2,
     rating: 5,
     productId: 2
@@ -125,12 +133,14 @@ const _reviews = [
     title: 'review 5',
     message: 'this is the fifth message',
     userId: 5,
+    rating: 2,
     productId: 5
   },
   {
     title: 'review 6',
     message: 'this is the sixth message',
     userId: 6,
+    rating: 1,
     productId: 6
   }
 ]
