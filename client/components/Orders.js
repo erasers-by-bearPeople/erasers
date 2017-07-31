@@ -10,21 +10,6 @@ class Orders extends Component {
   componentDidMount() {
     this.props.fetchAllOrders()
   }
-  // const wireArray = [
-  //   {
-  //     id: 32,
-  //     complete: 'complete',
-  //     price: 1300
-  //   },
-  //   {
-  //     id: 43,
-  //     complete: 'active',
-  //     price: 1600
-  //   }
-  // ]
-  //
-  // //we may not use this but its fun either wy
-
   render(){
 
     let total = 0
@@ -86,10 +71,10 @@ class Orders extends Component {
             </Table>
           </div>
         </div>
-    )
-  }else{
-    return (<div><h3>Loading...........</h3></div>)
-  }
+      )
+    }else{
+      return (<div><h3>Loading...........</h3></div>)
+    }
   }
 }
 
