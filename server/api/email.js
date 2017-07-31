@@ -1,28 +1,27 @@
 const nodemailer = require('nodemailer')
 
-module.exports = sendEmail
 
-const sendEmail = () => {
-  let transpoerter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
 
-    }
-  })
-
-  let mailOptions = {
-    from: 'ERASERS!ERASERS!ERASERS! <TalkinBoutErasers@gmail.com>',
-    to: userCheckout.email,
-    subject: "Order Confirmation ",
-    text:`Thank you for your order, ${userCheckout.name}! You'll receive another e-mail when your order ships`,
-    html:`<p>Thank you for your order, ${userCheckout.name}! You'll receive another e-mail when your order ships</p>`
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.NODEMAILER_USER,
+    pass: process.env.NODEMAILER_PASSWORD
   }
+})
 
-  transpoerter.sendMail(mailOptions, (error, info) => {
-    if(error) {
-      return console.log('Email error ', error)
-    }
-    console.log('Message %s send: %s', info.messageId, info.response)
-  })
-
+const confEmail = (orderInfo) => {
+  return  {
+    from: 'ERASERS!ERASERS!ERASERS! <AllAboutErasers@gmail.com>',
+    to: orderInfo.email,
+    subject: 'Order Confirmation ',
+    text:`Thank you for your order, ${orderInfo.name}! You'll receive another e-mail when your order ships`,
+    html:`<p>Thank you for your order, ${orderInfo.name}! You'll receive another e-mail when your order ships</p>`
+  }
 }
+
+
+
+module.exports = {confEmail, transporter}

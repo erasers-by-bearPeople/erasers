@@ -8,7 +8,7 @@ const OrderConfirmation = (props) => {
   )
 }
 
-
+export default OrderConfirmation
 
 
 
