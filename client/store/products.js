@@ -7,6 +7,7 @@ import history from '../history'
 /* -----------------    ACTION TYPES     ------------------ */
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
+const ADD_PRODUCT = 'ADD_PRODUCT'
 const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
 
 /* ------------   ACTION CREATORS     ------------------ */
@@ -18,12 +19,19 @@ const getProducts = (products) => {
   }
 }
 
+const postProduct = product => {
+  return {
+    type: ADD_PRODUCT,
+    product
+  }
+}
+
 export const setFilter = filterId => {
   return {
     type: FILTER_PRODUCTS,
     filterId: +filterId
-  };
-};
+  }
+}
 
 
 /* ------------       THUNK CREATORS     ------------------ */
@@ -35,12 +43,22 @@ export const fetchProducts = () => {
   }
 }
 
+export const addProduct = product => {
+  return dispatch => {
+    axios.post(`/api/products`, product)
+      .then(res => dispatch(postProduct(res.data)))
+      .catch(err => console.log(err))
+  }
+}
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function (products = [], action) {
   switch (action.type) {
   case GET_PRODUCTS:
     return action.products
+  case ADD_PRODUCT:
+    return [...products, action.product]
   default:
     return products
   }
