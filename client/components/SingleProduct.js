@@ -54,7 +54,11 @@ class SingleProduct extends Component {
           <label>Reviews</label>
           <p>{singleReview.message}</p>
         </div>
+<<<<<<< Updated upstream
         {this.props.isAdmin ? 
+=======
+        {this.props.isAdmin ?
+>>>>>>> Stashed changes
           <div>
             <Link to={`/management/products/${product.id}`}><h3>Edit Product</h3></Link>
           </div>
@@ -70,7 +74,11 @@ class SingleProduct extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.product,
+<<<<<<< Updated upstream
     review: state.review
+=======
+    review: state.review,
+>>>>>>> Stashed changes
     isAdmin: state.user.isAdmin
   }
 }
