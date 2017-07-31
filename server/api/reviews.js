@@ -1,20 +1,36 @@
-
 const router = require('express').Router()
-const {Review} = require('../db/models')
+const {Review, Product} = require('../db/models')
 module.exports = router
 
 
-
-//create review of product
-router.post('/:productId', (req, res, next) => {
-  const productId = req.params.productId
-  const { title, message, userId } = req.body
-  Review.create({
-    title,
-    message,
-    userId,
-    productId
-  })
-    .then(review => res.status(201).json(review))
+router.get('/', (req, res, next) => {
+  Review.findAll()
+    .then((reviews) => res.json(reviews))
     .catch(next)
 })
+
+router.get('/:productId', (req, res, next) => {
+  const id = req.params.productId
+  Review.findOne({where: {id}, include: [Product]})
+    .then((review) => {
+      req.session.review = review
+      return res.status(200).json(review)
+    })
+    .catch(next)
+})
+
+router.post('/', (req, res, next) => {
+  Review.create({
+    title: req.body.title,
+    message: req.body.message,
+    rating: req.body.rating,
+    productId: req.body.productId,
+    userId: req.body.userId
+  })
+    .then((newReview) => {
+      res.json(newReview);
+    })
+    .catch(next);
+});
+
+

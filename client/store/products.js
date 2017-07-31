@@ -8,6 +8,7 @@ import history from '../history'
 
 const GET_PRODUCTS = 'GET_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
+const FILTER_PRODUCTS = 'FILTER_PRODUCTS'
 
 /* ------------   ACTION CREATORS     ------------------ */
 
@@ -22,6 +23,13 @@ const postProduct = product => {
   return {
     type: ADD_PRODUCT,
     product
+  }
+}
+
+export const setFilter = filterId => {
+  return {
+    type: FILTER_PRODUCTS,
+    filterId: +filterId
   }
 }
 
