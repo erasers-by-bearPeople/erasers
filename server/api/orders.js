@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 router.get('/user', (req, res, next) => {
   Order.findAll({
     where: {
-      userId: req.session.passport.user
+      userId: req.user.id
     },
     include: [LineItem]
   })
@@ -51,8 +51,8 @@ router.post('/', (req, res, next) => {
   if(req.session.orderId){
     return res.json(req.session.orderId)
   }else{
-    if(req.session.id){
-      req.body.userId = req.session.passport.user
+    if(req.user){
+      req.body.userId = req.user.id
     }
     Order.create(req.body)
       .then((order) => {
