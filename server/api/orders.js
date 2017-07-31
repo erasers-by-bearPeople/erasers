@@ -1,5 +1,9 @@
 const router = require('express').Router()
 const {Order, LineItem} = require('../db/models')
+const nodemailer = require('nodemailer')
+const {confEmail, transporter } = require('./email')
+
+
 module.exports = router
 
 router.param('orderId', (req, res, next, orderId) => {
@@ -38,11 +42,16 @@ router.get('/:orderId', (req, res) => {
   return res.json(req.order)
 })
 
-
 router.put('/', (req, res, next) => {
   const id = req.session.orderId
-  Order.update(req.body, {where: {id}})
-    .then(order => res.json(order))
+  Order.update(req.body, {where: {id}, returning: true})
+    .then(orderInfo => {
+      let mailOptions = confEmail(orderInfo[1][0])
+      //promisify if possible
+      transporter.sendMail(mailOptions, (error, info) => {
+        return error ? next(error) : res.json(orderInfo[1][0])
+      })
+    })
     .catch(next)
 })
 
@@ -81,3 +90,5 @@ router.delete('/:orderId', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+
