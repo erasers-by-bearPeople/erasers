@@ -48,9 +48,22 @@ router.put('/', (req, res, next) => {
 
 
 router.post('/', (req, res, next) => {
+  // order is already live, it lives in session as Id and in DB
+  //return the order, but update the DB in the case that the user was not logged
+  //this might make more sense in the store, but I need the userid which
+  //is not avalible in the stor
   if(req.session.orderId){
-    return res.json(req.session.orderId)
+    if(req.user){
+      Order.update({userId: req.user.id},{where:{
+        id: req.session.orderId
+      }}).then(order => res.json(order.id))
+        .catch(next)
+    }else{
+      //non auth user gets the order ID an no post happens
+      return res.json(req.session.orderId)
+    }
   }else{
+    //if user logged in  new order ads DB
     if(req.user){
       req.body.userId = req.user.id
     }

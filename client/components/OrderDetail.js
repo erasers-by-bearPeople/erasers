@@ -30,6 +30,7 @@ class LineItem extends Component {
                   <th>Price</th>
                   <th>Quantity</th>
                   <th>Remove</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -37,7 +38,7 @@ class LineItem extends Component {
                   //adding up total (have another function for this)
                   total += item.price * item.quantity
                   return (<tr key={item.id}>
-                    <td><img src={item.product.image} height='50px'/></td>
+                    <td><Link to={`/products/${item.product.id}`}><img src={item.product.image} height='50px'/></Link></td>
                     <td>{item.product.title}</td>
                     <td>{item.product.category}</td>
                     <td>{formatter.format(item.price/100)}</td>
@@ -64,14 +65,15 @@ class LineItem extends Component {
                         />
                       </Button>
                     </td>
+                    <td>{formatter.format((item.price * item.quantity)/100)}</td>
                   </tr>
                   )
                 })}
-                {/* <tr>
+                <tr>
                   <th colSpan='3'>Total:</th>
                   <th>{formatter.format(total/100)}</th>
-                  <th colSpan='2'></th>
-                </tr> */}
+                  <th colSpan='3'></th>
+                </tr>
               </tbody>
             </Table>
             <Link to={`/checkout/${this.props.lineitems[0].orderId}`} >
@@ -106,7 +108,6 @@ const mapDispatchToProps = (dispatch) => {
     handleOnChange(event){
       const value = +event.target.value
       const id = +event.target.dataset.id
-      console.log({quantity: value, id: id})
       dispatch(updateQuanityLineItem({quantity: value, id: id}))
     }
   }
