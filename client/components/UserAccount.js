@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class UserAccount extends React.Component {
   render () {
 
-    const {id, name, email} = this.props
+    const {id, name, email, isAdmin} = this.props
 
     return (
 			<div className="container">
@@ -18,6 +18,18 @@ class UserAccount extends React.Component {
         <div>
           <Link to="/user/update">Update Account Profile</Link>
         </div>
+        <div>
+          {
+            isAdmin ?
+            <div>
+              <h3>Administrative Privileges</h3>
+              <p><Link to="/management/products">Manage Eraser Products</Link></p>
+              <p><Link to="/orders/management">Manage Orders</Link></p>
+              <p><Link to="/user/management">Manage User Accounts</Link></p>
+            </div>
+            : null
+          }
+        </div>
 			</div>
     )
   }
@@ -27,7 +39,8 @@ const mapState = state => {
   return ({
     id: state.user.id,
     name: state.user.name,
-    email: state.user.email
+    email: state.user.email,
+    isAdmin: state.user.isAdmin
   })
 }
 

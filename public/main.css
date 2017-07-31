@@ -1,3 +1,8 @@
+
 body {
     background-color: aqua;
+}
+.products_image {
+  width: 30%,
+  height: 30%
 }

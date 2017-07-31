@@ -54,6 +54,12 @@ class SingleProduct extends Component {
           <label>Reviews</label>
           <p>{singleReview.message}</p>
         </div>
+        {this.props.isAdmin ? 
+          <div>
+            <Link to={`/management/products/${product.id}`}><h3>Edit Product</h3></Link>
+          </div>
+          : null
+        }
       </div>
 
     )
@@ -65,6 +71,7 @@ const mapStateToProps = (state) => {
   return {
     product: state.product,
     review: state.review
+    isAdmin: state.user.isAdmin
   }
 }
 
