@@ -13,7 +13,7 @@ const GET_ORDERS = 'GET_ORDERS'
 * ACTION CREATORS
 */
 const createOrderId = orderId => ({type: CREATE_ORDER_ID, orderId})
-const checkoutOrder = orderId => ({type: CHECKOUT_ORDER, orderId})
+const checkoutOrder = userCheckout => ({type: CHECKOUT_ORDER, userCheckout})
 const getOrders = orders => ({type: GET_ORDERS, orders})
 
 /**
@@ -64,6 +64,10 @@ export default function (state = {}, action) {
   case CREATE_ORDER_ID:
     return Object.assign({},state,{
       orderId: action.orderId
+    })
+  case CHECKOUT_ORDER:
+    return Object.assign({}, state, {
+      userCheckout: action.userCheckout
     })
   default:
     return state

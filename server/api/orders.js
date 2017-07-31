@@ -1,5 +1,9 @@
 const router = require('express').Router()
 const {Order, LineItem} = require('../db/models')
+const nodemailer = require('nodemailer')
+const {confEmail, transporter } = require('./email')
+
+
 module.exports = router
 
 router.param('orderId', (req, res, next, orderId) => {
@@ -26,7 +30,7 @@ router.get('/', (req, res, next) => {
 router.get('/user', (req, res, next) => {
   Order.findAll({
     where: {
-      userId: req.session.passport.user
+      userId: req.user.id
     },
     include: [LineItem]
   })
@@ -38,21 +42,39 @@ router.get('/:orderId', (req, res) => {
   return res.json(req.order)
 })
 
-
 router.put('/', (req, res, next) => {
   const id = req.session.orderId
-  Order.update(req.body, {where: {id}})
-    .then(order => res.json(order))
+  Order.update(req.body, {where: {id}, returning: true})
+    .then(orderInfo => {
+      let mailOptions = confEmail(orderInfo[1][0])
+      //promisify if possible
+      transporter.sendMail(mailOptions, (error, info) => {
+        return error ? next(error) : res.json(orderInfo[1][0])
+      })
+    })
     .catch(next)
 })
 
 
 router.post('/', (req, res, next) => {
+  // order is already live, it lives in session as Id and in DB
+  //return the order, but update the DB in the case that the user was not logged
+  //this might make more sense in the store, but I need the userid which
+  //is not avalible in the stor
   if(req.session.orderId){
-    return res.json(req.session.orderId)
+    if(req.user){
+      Order.update({userId: req.user.id},{where:{
+        id: req.session.orderId
+      }}).then(order => res.json(order.id))
+        .catch(next)
+    }else{
+      //non auth user gets the order ID an no post happens
+      return res.json(req.session.orderId)
+    }
   }else{
-    if(req.session.id){
-      req.body.userId = req.session.passport.user
+    //if user logged in  new order ads DB
+    if(req.user){
+      req.body.userId = req.user.id
     }
     Order.create(req.body)
       .then((order) => {
@@ -68,3 +90,5 @@ router.delete('/:orderId', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+

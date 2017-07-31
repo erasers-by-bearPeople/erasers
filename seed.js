@@ -38,6 +38,13 @@ const _users = [
     email: 'john@email.com',
     password: 'tacos',
     isAdmin: true
+  },
+  {
+    name: 'Steve Stevenson',
+    email: 'steve@email.com',
+    password: 'hello',
+    isAdmin: false,
+    changePassword: true
   }
 ]
 
@@ -48,7 +55,6 @@ const _products = [
     price: 425,
     category: 'Novelty',
     inventory: 1,
-    rating: 5,
     image: '/images/marvel.jpg'
   },
   {
