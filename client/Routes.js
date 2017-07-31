@@ -35,7 +35,7 @@ class Routes extends Component {
               <Route path="/orderdetail" component={OrderDetail} />
               <Route path="/checkout" component={Checkout} />
               <Route path="/confirmation" component={OrderConfirmation} />
-              <Route path="/reviews" component={Review}/>
+              <Route path="/reviews/:productId" component={Review}/>
               {
                 isLoggedIn ?
                   <Switch>
