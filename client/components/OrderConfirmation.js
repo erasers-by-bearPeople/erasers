@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
-const OrderConfirmation = (props) => {
+const OrderConfirmation = () => {
 
   return (
     <h1>Thank you for your order!</h1>
