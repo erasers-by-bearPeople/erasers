@@ -8,16 +8,24 @@ import axios from 'axios'
  */
 const CREATE_ORDER_ID = 'CREATE_ORDER_ID'
 const CHECKOUT_ORDER = 'CHECKOUT_ORDER'
+const GET_ORDERS = 'GET_ORDERS'
 /**
 * ACTION CREATORS
 */
 const createOrderId = orderId => ({type: CREATE_ORDER_ID, orderId})
-
 const checkoutOrder = orderId => ({type: CHECKOUT_ORDER, orderId})
+const getOrders = orders => ({type: GET_ORDERS, orders})
 
 /**
  * THUNK CREATORS
  */
+
+export const getAllUserOrders = ()=>
+  dispatch =>
+    axios.get('/api/orders/user')
+      .then(res =>
+        dispatch(getOrders(res.data)))
+      .catch(err => console.log(err))
 
 export const makeOrderId = () =>
   dispatch =>
@@ -25,6 +33,7 @@ export const makeOrderId = () =>
       .then(res =>
         dispatch(createOrderId(res.data)))
       .catch(err => console.log(err))
+
 
 
 export function completeCheckout(orderDetails, history) {
@@ -40,14 +49,21 @@ export function completeCheckout(orderDetails, history) {
   }
 }
 
+
 /**
 * REDUCER
 */
 
 export default function (state = {}, action) {
   switch (action.type) {
+  case GET_ORDERS:
+    return Object.assign({},state,{
+      orders: action.orders
+    })
   case CREATE_ORDER_ID:
-    return action.orderId
+    return Object.assign({},state,{
+      orderId: action.orderId
+    })
   default:
     return state
   }
