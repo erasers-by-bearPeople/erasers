@@ -10,11 +10,11 @@ const Order = db.define('order', {
   },
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   city: {
     type: Sequelize.STRING,

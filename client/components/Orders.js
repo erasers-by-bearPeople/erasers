@@ -1,70 +1,98 @@
-import React  from 'react'
-//import {connect} from 'react-redux'
+import React, {Component}  from 'react'
+import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {Table,Button,Glyphicon,FormGroup,FormControl} from 'react-bootstrap'
+import { getAllUserOrders } from '../store'
 
 
-const Orders = () => {
+class Orders extends Component {
   //just to get the display going
-  const wireArray = [
-    {
-      id: 32,
-      complete: 'complete',
-      price: 1300
-    },
-    {
-      id: 43,
-      complete: 'active',
-      price: 1600
+  componentDidMount() {
+    this.props.fetchAllOrders()
+  }
+  render(){
+
+    let total = 0
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    })
+    if(this.props.orders){
+      return(
+
+        <div>
+          <h1>Your Orders
+          </h1>
+          <div>
+            <Table bordered hover responsive striped >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.props.orders.map((order)=>{
+                  let button = <Link to="/orderdetail"><Button bsSize='small'>
+                    <Glyphicon glyph='glyphicon glyphicon-pencil'/>
+                  </Button></Link>
+                  if(order.status === 'pending' || order.status === 'complete'){
+                    button = <Button disabled bsSize='small'>
+                      <Glyphicon glyph='glyphicon glyphicon-pencil'/>
+                    </Button>
+                  }
+                  //adding up total (have another function for this)
+
+                  let lineTotal = order.lineitems.reduce((sum,line)=>{
+                    return sum + (line.price * line.quantity)
+                  },0)
+
+                  total += lineTotal
+                  return (<tr key={order.id}>
+                    <td>{order.id}</td>
+                    <td>{order.status}</td>
+                    <td>{formatter.format(lineTotal/100)}</td>
+
+                    <td>
+                      {button}
+                    </td>
+                  </tr>
+                  )
+                })}
+                <tr>
+                  <th colSpan='2'>Total:</th>
+                  <th>{formatter.format(total/100)}</th>
+                  <th colSpan='1'></th>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+        </div>
+      )
+    }else{
+      return (<div><h3>Loading...........</h3></div>)
     }
-  ]
-  let total = 0
-  //we may not use this but its fun either wy
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 2
-  })
-  return(
-
-    <div>
-      <h1>Your Orders
-      </h1>
-      <div>
-        <Table bordered hover responsive striped >
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Status</th>
-              <th>Total</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {wireArray.map((order)=>{
-              //adding up total (have another function for this)
-              total += order.price
-              return (<tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.complete}</td>
-                <td>{formatter.format(order.price/100)}</td>
-
-                <td><Link to="/orderdetail"><Button bsSize='small'>
-                  <Glyphicon glyph='glyphicon glyphicon-pencil'/>
-                </Button></Link></td>
-              </tr>
-              )
-            })}
-            <tr>
-              <th colSpan='2'>Total:</th>
-              <th>{formatter.format(total/100)}</th>
-              <th colSpan='1'></th>
-            </tr>
-          </tbody>
-        </Table>
-      </div>
-    </div>
-  )
+  }
 }
 
-export default Orders
+const mapStateToProps = (state) => {
+  return {
+    orders: state.orders.orders,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchAllOrders() {
+      dispatch(getAllUserOrders())
+    }
+  }
+}
+
+
+const OrdersContainer = connect(mapStateToProps, mapDispatchToProps)(Orders)
+
+export default OrdersContainer

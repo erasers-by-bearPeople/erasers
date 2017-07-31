@@ -19,6 +19,7 @@ router.post('/login', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   User.create(req.body)
     .then(user => {
+      req.session.id = user.id //sgm
       req.login(user, err => err ? next(err) : res.json(user))
     })
     .catch(err => {

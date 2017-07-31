@@ -2,6 +2,7 @@ import React, {Component}  from 'react'
 import {connect} from 'react-redux'
 import {Table, Button, Glyphicon, FormGroup, FormControl} from 'react-bootstrap'
 import { fetchLineItems, deleteLineItem, updateQuanityLineItem } from '../store'
+import { Link } from 'react-router-dom'
 
 class LineItem extends Component {
 
@@ -73,7 +74,9 @@ class LineItem extends Component {
                 </tr> */}
               </tbody>
             </Table>
-            <button type="submit" className="btn btn-primary">Checkout</button>
+            <Link to={`/checkout/${this.props.lineitems[0].orderId}`} >
+              <button type="submit" className="btn   btn-primary">Checkout</button>
+            </Link>
           </div>
         </div>
       )
@@ -95,7 +98,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(fetchLineItems())
     },
     handleOnRemove(event){
-      if(confirm(`${event.target.dataset.id} Please confirm adition of ...${event.target.dataset.title}`)){
+      const name = event.target.dataset.title
+      if(confirm(`${event.target.dataset.id} Please confirm removal of ${name}`)){
         dispatch(deleteLineItem(event.target.dataset.id))
       }
     },
