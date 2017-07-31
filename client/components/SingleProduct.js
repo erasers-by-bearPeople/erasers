@@ -53,7 +53,12 @@ class SingleProduct extends Component {
             {/* <tr className='prod-reviews'>REVIEWS HERE</tr> */}
           </tbody>
         </table>
-
+        {this.props.isAdmin ? 
+          <div>
+            <Link to={`/management/products/${product.id}`}><h3>Edit Product</h3></Link>
+          </div>
+          : null
+        }
       </div>
 
     )
@@ -63,6 +68,7 @@ class SingleProduct extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.product,
+    isAdmin: state.user.isAdmin
   }
 }
 

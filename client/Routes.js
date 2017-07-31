@@ -27,6 +27,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Route exact path='/products/:productId' component={SingleProduct} />
+              <Route exact path="/management/products/:productId" component={ManageProduct} />
               <Route path="/products" component={Products} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
@@ -39,7 +40,6 @@ class Routes extends Component {
                     <Route path="/home" component={UserHome} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/account" component={UserAccount} />
-                    <Route path="/management/products" component={ManageProduct} />
                   </Switch> : null
               }
               {/* Displays our Products component as a fallback */}
