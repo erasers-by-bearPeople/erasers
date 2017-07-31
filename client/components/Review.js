@@ -6,7 +6,7 @@ import {addReviewToProduct} from "../store"
 const Review = (props) => {
   const products = props.products
 
-  // review form 
+  // review form
   return (
     <div id='review'>
       <h4>Submit Review</h4>
