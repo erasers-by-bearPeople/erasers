@@ -13,4 +13,5 @@ export {default as SingleProduct} from './SingleProduct'
 export {default as UserAccount} from './UserAccount'
 export {default as Checkout} from './Checkout'
 export {default as OrderConfirmation} from './OrderConfirmation'
+export {default as Review} from './Review'
 

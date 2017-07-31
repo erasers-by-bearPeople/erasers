@@ -11,27 +11,12 @@ const Products = (props) => {
       <div className="row">
         <div className="row">
 
-          {/*Header*/}
-          <div className="col-md-12">
-            <h4>Products</h4>
-            <h5>Products Available: {products.length}</h5>
-          </div>
-
-          {/*Refine by Search*/}
-          <div className="filter col-md-12">
-            <label>Refine by Search</label>
-            <select>
-              <option>
-              </option>
-            </select>
-          </div>
-
           {/*Refine by Category*/}
-          <div>
-            <label>Refine by Category</label>
-            <select>
-              <option>
-              </option>
+          <div className="col-lg-12">
+            <label>Filter</label>
+            <select className="browser-default">
+              <option value="" disabled defaultValue>Choose your option</option>
+              <option value="0">All</option>
             </select>
           </div>
 
@@ -40,10 +25,18 @@ const Products = (props) => {
             {
               products && products.map((product) => {
                 return (
-                  <div className="col-md-4" key={product.id}>
-                    <h3>{product.title}</h3>
+                  <div className="col-md-4" key={product.id} style={{margin: 0 + 'em', paddingRight: 3 + 'em'}}>
+                    <div>
+                      <div style={{textAlign: 'center'}}>
+                      <h3>
+                        {product.title}
+                        <button className="btn btn-info" value={product.id} style={{float: 'right'}}>+</button>
+                      </h3>
+                      </div>
+                    </div>
+
                      <Link to={`/products/${product.id}`}>
-                       <img src={product.image} className="products_image"/>
+                       <img src={product.image} className="products_image img-circle img-responsive img-center" style={{width: 10 + 'em', height: 10 + 'em', align: 'center'}}/>
                     </Link>
 
                     <label>Cost: ${product.price}</label>
@@ -58,14 +51,11 @@ const Products = (props) => {
                         })
                       }
                     </p>
-
-                    <button className="btn btn-info" value={product.id}>+</button>
                   </div>
                 )
               })
             }
           </div>
-
         </div>
       </div>
     </div>
@@ -74,7 +64,7 @@ const Products = (props) => {
 
 const mapState = (state) => {
   return {
-    products: state.products
+    products: state.products,
   }
 }
 
