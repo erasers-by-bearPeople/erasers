@@ -1,7 +1,7 @@
 /* -----------------    IMPORTS     ------------------ */
 
 import axios from 'axios'
-import { browserHistory } from 'react-router'
+
 
 /**
  * ACTION TYPES
@@ -36,13 +36,18 @@ export const makeOrderId = () =>
 
 
 
-export const completeCheckout = (orderDetails) =>         dispatch =>
-  axios.put(`/api/orders/${orderDetails.orderId}`, orderDetails)
-    .then(res => dispatch(checkoutOrder(res.data)))
-    .then(browserHistory.replace('/confirmation'))
-    .catch(console.error)
-    .catch(err => console.log(err))
-
+export function completeCheckout(orderDetails, history) {
+  return function thunk (dispatch) {
+    return axios.put('/api/orders', orderDetails)
+    .then(res => {
+      dispatch(checkoutOrder(res.data))
+      history.push('/confirmation')
+    })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
 
 
 /**
