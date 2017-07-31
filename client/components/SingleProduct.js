@@ -19,23 +19,29 @@ class SingleProduct extends Component {
       <div id='single-product container col-md-12'>
         <div>
           <h4>{product.title}</h4>
-          <button
-            className='btn btn-info'
-            value={product.id}
-            data-name={product.title}
-            data-id={product.id}
-            onClick={this.props.handleOnClick}
-            style={{float: 'right'}}>
-            Add To Cart
-          </button>
+          {product.inventory > 0 ?
+            <button
+              className='btn btn-info'
+              value={product.id}
+              data-name={product.title}
+              data-id={product.id}
+              onClick={this.props.handleOnClick}
+              style={{float: 'right'}}>
+              Add To Cart
+            </button>
+            : null
+          }
         </div>
         <div>
           <img className='single-product-image img-circle' src={`${product.image}`}/>
         </div>
         <div>
+          {product.inventory > 0 ?
           <p>
             {product.description}
           </p>
+          : <h2>Currently Unavailable</h2>
+          }
         </div>
         <div>
           <label>Cost: ${product.price / 100}</label>
