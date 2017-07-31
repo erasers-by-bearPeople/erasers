@@ -35,19 +35,19 @@ const mapState = (state) => {
   }
 }
 
-//const mapDispatchToProps = (dispatch, ownProps) => {
-//  const productId = Number(ownProps.match.params.productId)
-//  const userId = Number(ownProps.match.params.userId)
-//  return {
-//    handleSubmit(event) {
-//      console.log(event)
-//      const title = event.target.title.value
-//      const message = event.target.message.value
-//      const rating = event.target.rating.value
-//      const reviewData = {title, message, rating, productId, userId}
-//      dispatch(addReviewToProduct(reviewData))
-//    }
-//  }
-//}
+const mapDispatchToProps = (dispatch, ownProps) => {
+ const productId = Number(ownProps.match.params.productId)
+ const userId = Number(ownProps.match.params.userId)
+ return {
+   handleSubmit(event) {
+     event.preventDefault()
+     const title = event.target.title.value
+     const message = event.target.message.value
+     const rating = event.target.rating.value
+     const reviewData = {title, message, rating, productId, userId}
+     dispatch(addReviewToProduct(reviewData))
+   }
+ }
+}
 
 export default connect(mapState, /* mapDispatchToProps */)(Review)

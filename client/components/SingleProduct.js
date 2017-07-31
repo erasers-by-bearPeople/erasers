@@ -70,7 +70,7 @@ class SingleProduct extends Component {
 const mapStateToProps = (state) => {
   return {
     product: state.product,
-    review: state.review
+    review: state.review,
     isAdmin: state.user.isAdmin
   }
 }

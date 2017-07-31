@@ -38,6 +38,13 @@ const _users = [
     email: 'john@email.com',
     password: 'tacos',
     isAdmin: true
+  },
+  {
+    name: 'Steve Stevenson',
+    email: 'steve@email.com',
+    password: 'hello',
+    isAdmin: false,
+    changePassword: true
   }
 ]
 
