@@ -56,6 +56,8 @@ export function completeCheckout(orderDetails) {
 export default function (state = {}, action) {
   switch (action.type) {
   case GET_ORDERS:
+      // tk: this seems kind of strange to me: this means you have a state.orders.orders
+      // why not simply write a separate reducer for orders and one for orderId?
     return Object.assign({},state,{
       orders: action.orders
     })

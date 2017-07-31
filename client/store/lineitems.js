@@ -52,7 +52,7 @@ export default function (state = [], action) {
   case LINEITEMS_GET:
     return action.order
   case LINEITEM_ADD:
-    return action.lineItem
+    return action.lineItem // tk: shouldn't this be a concatenation?
   case LINEITEM_REMOVE:
     return state.filter((item)=>{
       return item.id !== action.id

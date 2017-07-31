@@ -45,6 +45,7 @@ export const editProduct = updatedProduct => {
 
 export default function (state = {}, action) {
   switch (action.type) {
+  // tk: you don't actually need two action types in this case: the thunks can hold the semantic meaning of retrieval vs. an update
   case GET_PRODUCT:
     return action.product
   case UPDATE_PRODUCT:

@@ -57,6 +57,8 @@ export const getAllReviews = () => {
 /* ------------       REDUCERS     ------------------ */
 
 export default function (state = {}, action) {
+  // tk: this seems to suggest that reviews could be either an object representing a single review or an array of reviews
+  // that could be very confusing - each reducer should operate on only one data type
   switch (action.type) {
     case GET_REVIEW:
       return action.review

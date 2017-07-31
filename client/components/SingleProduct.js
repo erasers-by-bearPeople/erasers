@@ -44,7 +44,7 @@ class SingleProduct extends Component {
           <label>Qty</label>
           <select id={product.id}>
             {
-              [1, 2, 3, 4, 5, 6, 7, 8].map(num => {
+              [1, 2, 3, 4, 5, 6, 7, 8].map(num => { // tk: this array is constant - it would be more efficient to define outside the render
                 return <option key={num}>{num}</option>
               })
             }

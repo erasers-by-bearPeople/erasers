@@ -36,6 +36,9 @@ class Orders extends Component {
               </thead>
               <tbody>
                 {this.props.orders.map((order)=>{
+                  /**
+                   * tk: this all seems like a good candidate for another component!
+                   */
                   let button = <Link to="/orderdetail"><Button bsSize='small'>
                     <Glyphicon glyph='glyphicon glyphicon-pencil'/>
                   </Button></Link>
