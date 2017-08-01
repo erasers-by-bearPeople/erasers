@@ -46,6 +46,7 @@ class Routes extends Component {
                     <Route exact path="/management/products" component={AddProduct} />
                     <Route exact path="/management/user/:userId" component={ManageUser} />
                     <Route exact path="/management/user" component={FindUser} />
+                    <Route exact path="/management/orders" component={ManageUserOrders} />
                     <Route exact path="/user/:userId/password" component={PasswordForm} />
                   </Switch> : null
               }
