@@ -7,7 +7,7 @@ const LINEITEMS_GET = 'LINEITEMS_GET'
 const LINEITEM_ADD = 'LINEITEM_ADD'
 const LINEITEM_REMOVE = 'LINEITEM_REMOVE'
 const LINEITEM_UPDATE_QUANTITY = 'LINEITEM_UPDATE_QUANTITY'
-
+const EMPTY_LINE_ITEMS = 'EMPTY_LINE_ITEMS'
 /**
  * ACTION CREATORS
  */
@@ -15,9 +15,15 @@ const getLineItems = order => ({type: LINEITEMS_GET, order})
 const addLineItem = lineItem => ({type: LINEITEM_ADD, lineItem})
 const removeLineItem = id => ({type: LINEITEM_REMOVE, id})
 const updateLineItemQuantity = lineItem => ({type: LINEITEM_UPDATE_QUANTITY, lineItem})
+const emptyActiveLineITems = emptyItems => ({type: EMPTY_LINE_ITEMS, emptyItems})
+
 /**
  * THUNK CREATORS
  */
+export const emptyActiveUserItems = () =>
+  dispatch =>
+    dispatch(emptyActiveLineITems())
+
 
 export const fetchLineItems = () =>
   dispatch =>
@@ -52,11 +58,13 @@ export default function (state = [], action) {
   case LINEITEMS_GET:
     return action.order
   case LINEITEM_ADD:
-    return action.lineItem
+    return [...state,...action.lineItem]
   case LINEITEM_REMOVE:
     return state.filter((item)=>{
       return item.id !== action.id
     })
+  case EMPTY_LINE_ITEMS:
+    return []
   case LINEITEM_UPDATE_QUANTITY:
     return state.map((item)=>{
       if(action.lineItem.id === item.id){

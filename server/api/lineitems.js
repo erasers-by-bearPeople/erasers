@@ -4,7 +4,7 @@ module.exports = router
 
 // get all lineitems
 router.get('/', (req, res, next) => {
-  const orderId = +req.session.orderId
+  const orderId = +req.session.order.id
   LineItem.findAll({
     where: {
       orderId: orderId
@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
   const lineItem = {
     price: req.session.product.price,
     quantity: 1,
-    orderId: +req.session.orderId,
+    orderId: +req.session.order.id,
     productId: +req.session.product.id
   }
   LineItem.create(lineItem)

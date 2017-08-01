@@ -55,7 +55,6 @@ const _products = [
     price: 425,
     category: 'Novelty',
     inventory: 1,
-    rating: 5,
     image: '/images/marvel.jpg'
   },
   {

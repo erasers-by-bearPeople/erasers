@@ -30,12 +30,14 @@ class Orders extends Component {
                 <tr>
                   <th>ID</th>
                   <th>Status</th>
+                  <th>Created</th>
                   <th>Total</th>
                   <th>Details</th>
                 </tr>
               </thead>
               <tbody>
                 {this.props.orders.map((order)=>{
+
                   let button = <Link to="/orderdetail"><Button bsSize='small'>
                     <Glyphicon glyph='glyphicon glyphicon-pencil'/>
                   </Button></Link>
@@ -54,6 +56,7 @@ class Orders extends Component {
                   return (<tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.status}</td>
+                    <td>{order.createdAt.slice(0, 10)}</td>
                     <td>{formatter.format(lineTotal/100)}</td>
 
                     <td>
@@ -65,7 +68,7 @@ class Orders extends Component {
                 <tr>
                   <th colSpan='2'>Total:</th>
                   <th>{formatter.format(total/100)}</th>
-                  <th colSpan='1'></th>
+                  <th colSpan='2'></th>
                 </tr>
               </tbody>
             </Table>
@@ -80,7 +83,7 @@ class Orders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.orders.orders,
+    orders: state.orders,
   }
 }
 

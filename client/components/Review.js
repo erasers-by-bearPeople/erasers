@@ -1,53 +1,72 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {addReviewToProduct} from "../store"
+import {addReviewById, singleProduct} from "../store"
 
-const Review = (props) => {
-  const products = props.products
+class Review extends Component {
+  componentDidMount() {
+    this.props.fetchProduct(this.props.match.params.productId)
+  }
 
-  // review form
-  return (
-    <div id='review'>
-      <h4>Submit Review</h4>
-      <form onSubmit={props.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="formName">title</label>
-          <input type="text" className="form-control" name="formName" placeholder="Enter a title" required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formEmail">message</label>
-          <input type="email" className="form-control" name="formEmail" placeholder="Enter a comment" required />
-        </div>
-        <div className="form-group">
-          <label htmlFor="formStreet">rating(1-5)</label>
-          <input type="text" className="form-control" name="formStreet" placeholder="Enter a number between 1 - 5" required />
-        </div>
-        <button type="submit" className="btn btn-primary" >Submit</button>
-      </form>
-    </div>
-  )
-}
+  render() {
+    const product = this.props.product
+    const user = this.props.user
 
-const mapState = (state) => {
-  return {
-    products: state.products,
+    // review form
+    return (
+      <div id='review'>
+        <h4>Submit Review</h4>
+        <form onSubmit={(event) => this.props.handleSubmit(product, user, event)}>
+          <h4>title:</h4>
+          <input
+            type="text"
+            placeholder="Review Title"
+            name="title"
+          />
+          <h4>comment:</h4>
+          <input
+            type="text"
+            placeholder="Review Comment"
+            name="message"
+          />
+          <h4>rating(1-5):</h4>
+          <input
+            type="text"
+            placeholder="Review Rating"
+            name="rating"
+          />
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    )
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
- const productId = Number(ownProps.match.params.productId)
- const userId = Number(ownProps.match.params.userId)
- return {
-   handleSubmit(event) {
-     event.preventDefault()
-     const title = event.target.title.value
-     const message = event.target.message.value
-     const rating = event.target.rating.value
-     const reviewData = {title, message, rating, productId, userId}
-     dispatch(addReviewToProduct(reviewData))
-   }
- }
+const mapState = (state) => {
+  return ({
+    product: state.product,
+    user: state.user
+  })
 }
 
-export default connect(mapState, /* mapDispatchToProps */)(Review)
+const mapDispatch = (dispatch) => {
+  return ({
+    fetchProduct(id) {
+      dispatch(singleProduct(id))
+    },
+    handleSubmit(product, user, event) {
+      event.preventDefault()
+      if (event.target.message.value.length < 10) return
+      const newReview = {
+        title: event.target.title.value,
+        message: event.target.message.value,
+        rating: +event.target.rating.value,
+        productId: +product.id,
+        userId: +user.id
+      }
+      dispatch(addReviewById(newReview))
+    }
+  })
+}
+
+export default connect(mapState, mapDispatch)(Review)
