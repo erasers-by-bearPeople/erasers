@@ -9,6 +9,7 @@ import order from './currentOrder'
 import lineitems from './lineitems'
 import review from './review'
 import account from './account'
+import adminOrders from './manageOrders'
 
 const reducer = combineReducers({
   user,
@@ -18,7 +19,8 @@ const reducer = combineReducers({
   lineitems,
   review,
   account,
-  order
+  order,
+  adminOrders
 })
 
 
@@ -34,3 +36,4 @@ export * from './lineitems'
 export * from './review'
 export * from './account'
 export * from './currentOrder'
+export * from './manageOrders'

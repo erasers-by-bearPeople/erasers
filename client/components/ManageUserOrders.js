@@ -71,7 +71,7 @@ class ManageUserOrders extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    adminOrders: state.orders.adminOrders
+    adminOrders: state.adminOrders
   }
 }
 
@@ -79,7 +79,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     adminGetAllUserOrders(){
       dispatch(adminGetAllUserOrders())
-
     }
   }
 }
