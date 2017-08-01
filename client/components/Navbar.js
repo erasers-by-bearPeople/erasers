@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, releaseAccount} from '../store'
+import history from '../history'
 
 class Navbar extends React.Component {
 
@@ -42,11 +43,12 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
       dispatch(releaseAccount())
+      history.push('/products')
     }
   }
 }

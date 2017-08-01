@@ -4,7 +4,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount, Checkout, OrderConfirmation, ManageProduct, AddProduct, Review, ManageUser, FindUser } from './components'
+import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount, Checkout, OrderConfirmation, ManageProduct, AddProduct, Review, ManageUser, FindUser, PasswordForm } from './components'
 import {me, fetchProducts} from './store'
 
 /**
@@ -27,10 +27,6 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Route exact path='/products/:productId' component={SingleProduct} />
-              <Route exact path="/management/products/:productId" component={ManageProduct} />
-              <Route exact path="/management/products" component={AddProduct} />
-              <Route exact path="/management/user/:userId" component={ManageUser} />
-              <Route exact path="/management/user" component={FindUser} />
               <Route path="/products" component={Products} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
@@ -45,6 +41,11 @@ class Routes extends Component {
                     <Route path="/home" component={UserHome} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/account" component={UserAccount} />
+                    <Route exact path="/management/products/:productId" component={ManageProduct} />
+                    <Route exact path="/management/products" component={AddProduct} />
+                    <Route exact path="/management/user/:userId" component={ManageUser} />
+                    <Route exact path="/management/user" component={FindUser} />
+                    <Route exact path="/user/:userId/password" component={PasswordForm} />
                   </Switch> : null
               }
               {/* Displays our Products component as a fallback */}
