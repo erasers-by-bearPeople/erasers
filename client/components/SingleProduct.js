@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {singleProduct, makeUserOrder, addToOrder, getAllReviewsById} from '../store'
+import {singleProduct, makeOrderId, addToOrder, getAllReviewsById} from '../store'
+import  {numAry}  from '../../public/states'
+
 
 class SingleProduct extends Component {
 
@@ -44,7 +46,7 @@ class SingleProduct extends Component {
           <label>Qty</label>
           <select id={product.id}>
             {
-              [1, 2, 3, 4, 5, 6, 7, 8].map(num => {
+              numAry.map(num => {
                 return <option key={num}>{num}</option>
               })
             }
