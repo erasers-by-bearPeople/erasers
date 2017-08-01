@@ -4,6 +4,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {singleProduct, makeOrderId, addToOrder, getAllReviewsById} from '../store'
 import  {numAry}  from '../../public/states'
 
+
 class SingleProduct extends Component {
 
   componentDidMount() {
@@ -97,7 +98,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     handleOnClick(event) {
       event.preventDefault()
       if (confirm(`Please confirm addition of ${event.target.dataset.name}`)) {
-        dispatch(makeOrderId())
+        dispatch(makeUserOrder())
           .then(() => {
             dispatch(addToOrder())
             ownProps.history.push('/orderdetail')

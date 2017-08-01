@@ -43,7 +43,7 @@ router.get('/:orderId', (req, res) => {
 })
 
 router.put('/', (req, res, next) => {
-  const id = req.session.orderId
+  const id = req.session.order.id
   Order.update(req.body, {where: {id}, returning: true})
     .then(orderInfo => {
       let mailOptions = confEmail(orderInfo[1][0])
@@ -61,15 +61,15 @@ router.post('/', (req, res, next) => {
   //return the order, but update the DB in the case that the user was not logged
   //this might make more sense in the store, but I need the userid which
   //is not avalible in the stor
-  if(req.session.orderId){
+  if(req.session.order){
     if(req.user){
       Order.update({userId: req.user.id},{where:{
-        id: req.session.orderId
-      }}).then(order => res.json(order.id))
+        id: req.session.order.id
+      }}).then(order => res.json(order))
         .catch(next)
     }else{
       //non auth user gets the order ID an no post happens
-      return res.json(req.session.orderId)
+      return res.json(req.session.order)
     }
   }else{
     //if user logged in  new order ads DB
@@ -78,8 +78,8 @@ router.post('/', (req, res, next) => {
     }
     Order.create(req.body)
       .then((order) => {
-        req.session.orderId = order.id
-        return res.json(order.id)
+        req.session.order = order
+        return res.json(order)
       })
       .catch(next)
   }
@@ -90,5 +90,3 @@ router.delete('/:orderId', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
-
-

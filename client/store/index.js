@@ -4,7 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import user from './user'
 import product from './product'
 import products from './products'
-import orders from './orders'
+import orders from './allUserOrders'
+import order from './currentOrder'
 import lineitems from './lineitems'
 import review from './review'
 import account from './account'
@@ -16,7 +17,8 @@ const reducer = combineReducers({
   orders,
   lineitems,
   review,
-  account
+  account,
+  order
 })
 
 
@@ -27,7 +29,8 @@ export default store
 export * from './user'
 export * from './product'
 export * from './products'
-export * from './orders'
+export * from './allUserOrders'
 export * from './lineitems'
 export * from './review'
 export * from './account'
+export * from './currentOrder'
