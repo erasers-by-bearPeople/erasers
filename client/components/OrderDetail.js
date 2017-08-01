@@ -1,13 +1,13 @@
 import React, {Component}  from 'react'
 import {connect} from 'react-redux'
 import {Table, Button, Glyphicon, FormGroup, FormControl} from 'react-bootstrap'
-import { fetchLineItems, deleteLineItem, updateQuanityLineItem } from '../store'
+import { fetchLineItems, deleteLineItem, updateQuanityLineItem , fetchActiveUserOrder} from '../store'
 import { Link } from 'react-router-dom'
 
 class LineItem extends Component {
 
   componentDidMount() {
-    this.props.fetchLineItems()
+    this.props.fetchLineActive()
   }
   render(){
     let total = 0
@@ -96,8 +96,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchLineItems() {
-      dispatch(fetchLineItems())
+    fetchLineActive() {
+      dispatch(fetchActiveUserOrder())
+        .then(()=> dispatch(fetchLineItems()))
     },
     handleOnRemove(event){
       const name = event.target.dataset.title
