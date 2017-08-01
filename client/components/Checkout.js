@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, withRouter  } from 'react-router-dom'
 import { connect} from 'react-redux'
-import { completeCheckout, fetchLineItems } from '../store'
+import { changeUserOrder, fetchLineItems } from '../store'
 import {Table} from 'react-bootstrap'
 
 
@@ -113,7 +113,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const zip = +e.formZip.value
       const status = 'pending'
       const orderDetails = { email, name, street, city, state, zip, status}
-      dispatch(completeCheckout(orderDetails))
+      dispatch(changeUserOrder(orderDetails))
       .then(() => {
         return ownProps.history.push('/confirmation')
       })
