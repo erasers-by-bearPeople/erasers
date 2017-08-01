@@ -43,7 +43,6 @@ class Review extends Component {
 }
 
 const mapState = (state) => {
-//  console.log(state)
   return ({
     product: state.product,
     user: state.user

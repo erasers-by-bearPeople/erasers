@@ -71,7 +71,7 @@ class SingleProduct extends Component {
           : null
         }
         <div>
-          <Link to={`/reviews/${product.productId}`}>Add Review</Link>
+          <Link to={`/reviews/${product.id}`}>Add Review</Link>
         </div>
       </div>
 
