@@ -34,12 +34,13 @@ class Routes extends Component {
               <Route exact path="/management/orders" component={ManageUserOrders} />
               <Route exact path="/management/user" component={FindUser} />
               <Route path="/products" component={Products} />
+              <Route path="/reviews/:productId" component={Review}/>
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/orderdetail" component={OrderDetail} />
               <Route path="/checkout" component={Checkout} />
               <Route path="/confirmation" component={OrderConfirmation} />
-              <Route path="/reviews/:productId" component={Review}/>
+
               {
                 isLoggedIn ?
                   <Switch>
