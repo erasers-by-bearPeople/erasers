@@ -83,7 +83,7 @@ class Orders extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    orders: state.orders.orders,
+    orders: state.orders,
   }
 }
 
