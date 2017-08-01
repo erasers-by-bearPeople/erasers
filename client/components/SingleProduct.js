@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
-import {singleProduct, makeOrderId, addToOrder, getAllReviewsById} from '../store'
+import {singleProduct, makeUserOrder, addToOrder, getAllReviewsById} from '../store'
 import  {numAry}  from '../../public/states'
 
 

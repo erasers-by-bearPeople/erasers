@@ -30,6 +30,7 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/logout', (req, res) => {
+  req.session.order = null
   req.logout()
   res.redirect('/')
 })
