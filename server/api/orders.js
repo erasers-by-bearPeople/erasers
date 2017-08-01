@@ -27,6 +27,26 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/active', (req, res, next) => {
+  const active = {}
+  //this is a cheat because in the real world this would
+  if(req.user) {
+    active.status = 'active'
+    active.userId = req.user.id
+
+    Order.findOne({where: active})
+      .then((order) => {
+        req.session.order = order
+        return order
+      }).then(order => res.json(order))
+      .catch(next)
+  }else{
+    res.json(req.session.order)
+  }
+
+
+})
+
 router.get('/user', (req, res, next) => {
   Order.findAll({
     where: {
@@ -61,6 +81,7 @@ router.post('/', (req, res, next) => {
   //return the order, but update the DB in the case that the user was not logged
   //this might make more sense in the store, but I need the userid which
   //is not avalible in the stor
+
   if(req.session.order){
     if(req.user){
       Order.update({userId: req.user.id},{where:{
