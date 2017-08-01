@@ -10,6 +10,13 @@ class LineItem extends Component {
     this.props.fetchLineActive()
   }
   render(){
+  //  console.log('in page change',this.props.location.pathname)
+    /// same page for wish list
+    let head = 'Your Erasers Cart'
+    if(this.props.location.pathname === '/wishlist'){
+      head = 'Your Wish List'
+    }
+
     let total = 0
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -19,7 +26,7 @@ class LineItem extends Component {
     if(this.props.lineitems.length){
       return(
         <div>
-          <h1>Your Erasers Cart</h1>
+          <h1>{head}</h1>
           <div>
             <Table bordered hover responsive striped >
               <thead>
@@ -94,7 +101,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
+  console.log(ownProps.location.pathname)
   return {
     fetchLineActive() {
       dispatch(fetchActiveUserOrder())
