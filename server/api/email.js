@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 
 const confEmail = (orderInfo) => {
   return  {
-    from: 'ERASERS!ERASERS!ERASERS! <AllAboutErasers@gmail.com>',
+    from: 'Erasers!Eraser!Erasers! <AllAboutErasers@gmail.com>',
     to: orderInfo.email,
     subject: 'Order Confirmation ',
     text:`Thank you for your order, ${orderInfo.name}! You'll receive another e-mail when your order ships`,
@@ -22,6 +22,15 @@ const confEmail = (orderInfo) => {
   }
 }
 
+const shipEmail = (orderInfo) => {
+  return  {
+    from: 'Erasers!Eraser!Erasers! <AllAboutErasers@gmail.com>',
+    to: orderInfo.email,
+    subject: 'Order Shipped',
+    text:`We're please to inform you your eraser order has shipped! Tracking info not available due to delivery by drone. You're welcome`,
+    html:`<p>We're please to inform you your eraser order has shipped! Tracking info not available due to delivery by drone. You're welcome</p>`
+  }
+}
 
 
-module.exports = {confEmail, transporter}
+module.exports = {confEmail, transporter, shipEmail}

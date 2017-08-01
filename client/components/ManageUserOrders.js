@@ -1,7 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+
 import { adminGetAllUserOrders } from '../store'
 import {Table, Button, Glyphicon, FormControl, FormGroup } from 'react-bootstrap'
+
+
+
+
 
 class ManageUserOrders extends React.Component {
 
@@ -11,6 +16,7 @@ class ManageUserOrders extends React.Component {
 
   render() {
     const orders = this.props.adminOrders
+
     return(
       <div>
         <div className="constainer">
@@ -57,6 +63,7 @@ class ManageUserOrders extends React.Component {
                   )})}
            </tbody>
        </Table>
+
       </div>
     )
   }
@@ -72,10 +79,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     adminGetAllUserOrders(){
       dispatch(adminGetAllUserOrders())
+
     }
   }
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageUserOrders)
+
 

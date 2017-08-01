@@ -3,7 +3,7 @@ import { Link, withRouter  } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { changeUserOrder, fetchLineItems } from '../store'
 import {Table} from 'react-bootstrap'
-
+import  {states}  from '../../public/states'
 
 /* add order details to checkout*/
 class Checkout extends React.Component {
@@ -19,7 +19,7 @@ class Checkout extends React.Component {
   }
 
   render() {
-    const states = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']
+
     const props = this.props
 
     let total = 0
