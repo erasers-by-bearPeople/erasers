@@ -4,9 +4,8 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount, Checkout, OrderConfirmation, ManageProduct, AddProduct, Review, ManageUser, FindUser, ManageUserOrders } from './components'
+import {Main, Login, Signup, UserHome, OrderDetail, Orders, SingleProduct, Products, UserAccount, Checkout, OrderConfirmation, ManageProduct, AddProduct, Review, ManageUser, FindUser, ManageUserOrders,PasswordForm } from './components'
 import {me, fetchProducts, fetchActiveUserOrder, getAllUserOrders } from './store'
-
 
 /**
  * COMPONENT
@@ -28,11 +27,6 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Route exact path='/products/:productId' component={SingleProduct} />
-              <Route exact path="/management/products/:productId" component={ManageProduct} />
-              <Route exact path="/management/products" component={AddProduct} />
-              <Route exact path="/management/user/:userId" component={ManageUser} />
-              <Route exact path="/management/orders" component={ManageUserOrders} />
-              <Route exact path="/management/user" component={FindUser} />
               <Route path="/products" component={Products} />
               <Route path="/reviews/:productId" component={Review}/>
               <Route path="/login" component={Login} />
@@ -41,7 +35,6 @@ class Routes extends Component {
               <Route path="/wishlist" component={OrderDetail} />
               <Route path="/checkout" component={Checkout} />
               <Route path="/confirmation" component={OrderConfirmation} />
-
               {
                 isLoggedIn ?
                   <Switch>
@@ -49,6 +42,11 @@ class Routes extends Component {
                     <Route path="/home" component={UserHome} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/account" component={UserAccount} />
+                    <Route exact path="/management/products/:productId" component={ManageProduct} />
+                    <Route exact path="/management/products" component={AddProduct} />
+                    <Route exact path="/management/user/:userId" component={ManageUser} />
+                    <Route exact path="/management/user" component={FindUser} />
+                    <Route exact path="/user/:userId/password" component={PasswordForm} />
                   </Switch> : null
               }
               {/* Displays our Products component as a fallback */}
