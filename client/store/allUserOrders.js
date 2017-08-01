@@ -7,12 +7,18 @@ import axios from 'axios'
  */
 
 const GET_ORDERS = 'GET_ORDERS'
-
+const EMPTY_ORDERS = 'EMPTY_ORDERS'
 /**
 * ACTION CREATORS
 */
 
 const getUserOrders = orders => ({type: GET_ORDERS, orders})
+const emptyUserOrders = () => ({type: EMPTY_ORDERS})
+
+export const emptyActiveUserOrders = () =>
+  dispatch =>
+    dispatch(emptyUserOrders())
+
 
 export const getAllUserOrders = ()=>
   dispatch =>
@@ -26,12 +32,12 @@ export const getAllUserOrders = ()=>
       * REDUCER
       */
 
-export default function (state = {}, action) {
+export default function (state = [], action) {
   switch (action.type) {
   case GET_ORDERS:
-    return Object.assign({},state,{
-      orders: action.orders
-    })
+    return action.orders
+  case EMPTY_ORDERS:
+    return []
   default:
     return state
   }
