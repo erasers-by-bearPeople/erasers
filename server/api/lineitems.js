@@ -45,16 +45,24 @@ router.get('/item/:itemId', (req, res, next) => {
 router.post('/', (req, res, next) => {
 
   const lineItem = {
-    price: req.session.product.price,
     quantity: 1,
     orderId: +req.session.order.id,
-    productId: +req.session.product.id
+
   }
 
   if(req.body){
     lineItem.price = req.body.price
     lineItem.productId = req.body.id
   }
+
+  if(req.session.product){
+    
+    lineItem.price = +req.session.product.price
+    lineItem.productId = +req.session.product.id
+  }
+
+
+
   LineItem.create(lineItem)
     .then((created) => {
       return res.json(created)
