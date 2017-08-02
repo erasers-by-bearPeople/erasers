@@ -15,7 +15,7 @@ class Products extends Component {
 
     return (
       <div className="container">
-      <h1 className="productsTitle">Erasers!Erasers!Erasers!</h1>
+        <h1 className="productsTitle">Erasers!Erasers!Erasers!</h1>
         <div className="row">
           <div className="row">
 
@@ -32,13 +32,13 @@ class Products extends Component {
 
             {/*Search By Category*/}
             <div className="col-lg-12">
-            <form>
-              <input
-                type="text"
-                onChange={(event) => this.props.handleChange(event)}
-                placeholder="category name"
+              <form>
+                <input
+                  type="text"
+                  onChange={(event) => this.props.handleChange(event)}
+                  placeholder="category name"
                 className="form-control"/>
-            </form>
+              </form>
             </div>
 
             {/*product listing*/}
@@ -63,19 +63,19 @@ class Products extends Component {
                                 style={{float: 'right'}}
                               />
                             </Button>
-                        </h3>
+                          </h3>
                         </div>
                       </div>
 
                       <Link to={`/products/${product.id}`}>
                         <img src={product.image} className="products_image img-circle img-responsive img-center"
-                             />
+                        />
                       </Link>
 
                       <label>Cost: ${product.price/100}</label>
                       { product.inventory > 0 ?
-                         <p>In stock</p> :
-                         <p>Out of stock</p>
+                        <p>In stock</p> :
+                        <p>Out of stock</p>
                       }
 
                       <p>
@@ -117,7 +117,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
       event.preventDefault()
       dispatch(fetchProducts())
       dispatch(filterProductsByCategory(event.target.value))
-  },
+    },
     addProductOnClick(product){
       const productR = {
         price: product.price,
@@ -129,7 +129,7 @@ const mapDispatchToProps = (dispatch,ownProps) => {
           ownProps.history.push('/orderdetail')
         })
     }
-  //})
+  }
 
 }
 
