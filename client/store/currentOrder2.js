@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 /**
- * ACTION TYPES
+ * ACTION TYPES_git
 */
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
@@ -70,9 +70,9 @@ export default function (state = {}, action) {
   switch (action.type) {
   case CREATE_ORDER:
     return action.order
-  case GET_ACTIVE_ORDER:
-    return action.order
   case CHANGE_ORDER:
+    return action.order
+  case GET_ACTIVE_ORDER:
     return action.order
   case EMPTY_ORDER:
     return {}
