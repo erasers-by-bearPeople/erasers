@@ -27,7 +27,7 @@ class SingleProduct extends Component {
               value={product.id}
               data-name={product.title}
               data-id={product.id}
-              onClick={this.props.handleOnClick}
+              onClick={()=>{return this.props.handleOnClick(product)}}
               style={{float: 'right'}}>
               Add To Cart
             </button>
@@ -101,12 +101,15 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     fetchSingleProduct(id) {
       dispatch(singleProduct(id))
     },
-    handleOnClick(event) {
-      event.preventDefault()
-      if (confirm(`Please confirm addition of ${event.target.dataset.name}`)) {
+    handleOnClick(product) {
+      const productR = {
+        price: product.price,
+        productId: product.id
+      }
+      if (confirm(`Please confirm addition of ${product.title}`)) {
         dispatch(makeUserOrder())
           .then(() => {
-            dispatch(addToOrder())
+            dispatch(addToOrder(productR))
             ownProps.history.push('/orderdetail')
           })
       }
