@@ -43,11 +43,17 @@ router.get('/item/:itemId', (req, res, next) => {
 
 // add a line item (post)
 router.post('/', (req, res, next) => {
+
   const lineItem = {
     price: req.session.product.price,
     quantity: 1,
     orderId: +req.session.order.id,
     productId: +req.session.product.id
+  }
+
+  if(req.body){
+    lineItem.price = req.body.price
+    lineItem.productId = req.body.id
   }
   LineItem.create(lineItem)
     .then((created) => {

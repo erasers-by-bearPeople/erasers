@@ -32,9 +32,9 @@ export const fetchLineItems = () =>
         dispatch(getLineItems(res.data)))
       .catch(err => console.log(err))
 
-export const addToOrder = () =>
+export const addToOrder = (product) =>
   dispatch =>
-    axios.post('/api/lineitems/')
+    axios.post('/api/lineitems/', product)
       .then(res =>
         dispatch(addLineItem(res.data)))
       .catch(err => console.log(err))
