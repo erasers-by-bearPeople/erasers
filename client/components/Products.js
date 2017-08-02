@@ -26,12 +26,11 @@ class Products extends Component {
               {
                 products && products.map((product) => {
                   return (
-                    <div className="col-md-4" key={product.id} style={{margin: 0 + 'em', paddingRight: 3 + 'em'}}>
+                    <div className="col-md-4 single-product" key={product.id} style={{margin: 0 + 'em', paddingRight: 3 + 'em'}}>
                       <div>
                         <div style={{textAlign: 'center'}}>
                           <h3>
                             {product.title}
-                            <button className="btn btn-info" value={product.id} style={{float: 'right'}}>+</button>
                           </h3>
                         </div>
                       </div>

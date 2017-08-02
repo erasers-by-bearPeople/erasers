@@ -58,6 +58,7 @@ class SingleProduct extends Component {
             }
           </select>
         </div>
+
         <div>
           <label>Reviews: </label>
           {
@@ -72,6 +73,7 @@ class SingleProduct extends Component {
             })
           }
         </div>
+
         {this.props.isAdmin ?
           <div>
             <Link to={`/management/products/${product.id}`}><h3>Edit Product</h3></Link>
@@ -89,6 +91,7 @@ class SingleProduct extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('state', state)
   return {
     product: state.product,
     reviews: state.review,
