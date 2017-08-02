@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {Order, LineItem} = require('../db/models')
-const nodemailer = require('nodemailer')
 const {confEmail, transporter } = require('./email')
 
 

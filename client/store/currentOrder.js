@@ -7,6 +7,7 @@ import axios from 'axios'
 */
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
+const CHANGE_ORDER = 'CHANGE_ORDER'
 const EMPTY_ORDER = 'EMPTY_ORDER'
 const UPDATE_ORDER_VALID = 'UPDATE_ORDER_VALID'
 
@@ -48,7 +49,7 @@ export const fetchActiveUserOrder = () =>
 export const makeUserOrder = () =>
   dispatch =>
     axios.post('/api/orders/')
-      .then(res => 
+      .then(res =>
         dispatch(createUserOrder(res.data)))
       .catch(err => console.log(err))
 
@@ -70,6 +71,8 @@ export default function (state = {}, action) {
   case CREATE_ORDER:
     return action.order
   case GET_ACTIVE_ORDER:
+    return action.order
+  case CHANGE_ORDER:
     return action.order
   case EMPTY_ORDER:
     return {}
