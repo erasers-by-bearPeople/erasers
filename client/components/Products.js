@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getAllReviewsById} from "../store/review";
 
-class Products extends Component {
+export class Products extends Component {
 
   render() {
     const products = this.props.products
@@ -42,7 +42,7 @@ class Products extends Component {
                       </Link>
 
                       <label>Cost: ${product.price}</label>
-                      <p>In stock: {product.inventory}</p>
+                      <h4>In stock: {product.inventory}</h4>
                       <p>
                         Rating:
                         {
@@ -65,7 +65,7 @@ class Products extends Component {
   }
 }
 
-const mapState = (state) => {
+export const mapState = (state) => {
   return {
     products: state.products
   }

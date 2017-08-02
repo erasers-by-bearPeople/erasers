@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {addReviewById, singleProduct} from "../store"
 
-class Review extends Component {
+export class Review extends Component {
   componentDidMount() {
     this.props.fetchProduct(this.props.match.params.productId)
   }
@@ -42,14 +42,14 @@ class Review extends Component {
   }
 }
 
-const mapState = (state) => {
+export const mapState = (state) => {
   return ({
     product: state.product,
     user: state.user
   })
 }
 
-const mapDispatch = (dispatch) => {
+export const mapDispatch = (dispatch) => {
   return ({
     fetchProduct(id) {
       dispatch(singleProduct(id))

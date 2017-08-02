@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addProduct } from '../store'
 
-class AddProduct extends React.Component {
+export class AddProduct extends React.Component {
   render () {
     
     return (
@@ -64,13 +64,13 @@ class AddProduct extends React.Component {
   }
 }
 
-const mapState = state => {
+export const mapState = state => {
   return ({
 
   })
 }
 
-const mapDispatch = dispatch => {
+export const mapDispatch = dispatch => {
   return ({
     handleSubmit (event) {
       event.preventDefault()
