@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getAllReviewsById} from "../store/review";
+import {singleProduct, makeUserOrder, addToOrder } from '../store'
+import {Button, Glyphicon} from 'react-bootstrap'
 
 class Products extends Component {
 
@@ -25,13 +27,24 @@ class Products extends Component {
             <div className="row">
               {
                 products && products.map((product) => {
+
                   return (
                     <div className="col-md-4" key={product.id} style={{margin: 0 + 'em', paddingRight: 3 + 'em'}}>
                       <div>
                         <div style={{textAlign: 'center'}}>
                           <h3>
                             {product.title}
-                            <button className="btn btn-info" value={product.id} style={{float: 'right'}}>+</button>
+
+                            <Button
+                              bsSize='large'
+                              onClick={()=>{return this.props.addProductOnClick(product)}}>
+                              <Glyphicon
+                                data-title={product.title}
+                                data-id={product.id}
+                                glyph='glyphicon glyphicon-plus'
+                                style={{float: 'right'}}
+                              />
+                            </Button>
                           </h3>
                         </div>
                       </div>
@@ -67,14 +80,26 @@ class Products extends Component {
 
 const mapState = (state) => {
   return {
-    products: state.products
+    products: state.products,
+    product: state.product
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,ownProps) => {
   return {
     fetchReviewsById(id) {
       return dispatch(getAllReviewsById(id))
+    },
+    addProductOnClick(product){
+      event.preventDefault()
+      dispatch(makeUserOrder())
+        .then(() => {
+          dispatch(addToOrder(product))
+          ownProps.history.push('/orderdetail')
+        })
+      //console.log(product)
+
+
     }
   }
 }
