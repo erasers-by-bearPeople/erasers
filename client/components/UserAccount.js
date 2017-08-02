@@ -21,8 +21,9 @@ class UserAccount extends React.Component {
             <div>
               <h3>Administrative Privileges</h3>
               <p><Link to="/management/products">Manage Eraser Products</Link></p>
-              <p><Link to="/orders/management">Manage Orders</Link></p>
+              <p><Link to="/management/orders">Manage Orders</Link></p>
               <p><Link to="/management/user">Manage User Accounts</Link></p>
+
             </div>
             : null
           }

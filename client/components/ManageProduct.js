@@ -85,7 +85,7 @@ const mapState = state => {
   })
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch, ownProps) => {
   return ({
     fetchSingleProduct(id) {
       dispatch(singleProduct(id))
@@ -104,6 +104,7 @@ const mapDispatch = dispatch => {
         image: event.target.image.value
       }
       dispatch(editProduct(newValues))
+      ownProps.history.push(`/products/${product.id}`)
     }
   })
 }

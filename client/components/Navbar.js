@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import history from '../history'
 import {logout, releaseAccount, emptyActiveUserOrder, emptyActiveUserItems, emptyActiveUserOrders} from '../store'
 
 class Navbar extends React.Component {
@@ -30,7 +31,12 @@ class Navbar extends React.Component {
                 <Link to="/signup"><h4>Sign Up</h4></Link>
               </div>
           }
-        </div>
+          <div className="navbar-right">
+              <Link to="/orderdetail">
+                <div style={{fontSize: '30px'}} className="glyphicon glyphicon-shopping-cart"></div>
+              </Link>
+            </div>
+          </div>
       </nav>
     )
   }
@@ -42,7 +48,7 @@ const mapState = (state) => {
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
@@ -50,8 +56,11 @@ const mapDispatch = (dispatch) => {
       dispatch(emptyActiveUserOrder())
       dispatch(emptyActiveUserItems())
       dispatch(emptyActiveUserOrders())
+      history.push('/products')
     }
   }
 }
 
 export default connect(mapState, mapDispatch)(Navbar)
+
+

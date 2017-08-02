@@ -6,7 +6,6 @@ import axios from 'axios'
  * ACTION TYPES
  */
 
-
 const ADMIN_GET_ORDERS = 'ADMIN_GET_ORDERS'
 
 /**
@@ -18,10 +17,16 @@ const adminGetUserOrders = adminOrders => ({type: ADMIN_GET_ORDERS, adminOrders}
 /**
  * THUNK CREATORS
  */
-
 export const adminGetAllUserOrders = ()=>
   dispatch =>
     axios.get('/api/orders/')
+      .then(res =>
+        dispatch(adminGetUserOrders(res.data)))
+      .catch(err => console.log(err))
+
+export const adminGetFilteredUserOrders = (status) =>
+  dispatch =>
+    axios.put('/api/orders/filter', status)
       .then(res =>
         dispatch(adminGetUserOrders(res.data)))
       .catch(err => console.log(err))

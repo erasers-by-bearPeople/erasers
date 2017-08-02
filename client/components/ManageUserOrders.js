@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
-import { adminGetAllUserOrders } from '../store'
+import { adminGetAllUserOrders, adminGetFilteredUserOrders } from '../store'
+import { Link } from 'react-router-dom'
 import {Table, Button, Glyphicon, FormControl, FormGroup } from 'react-bootstrap'
 
 
@@ -15,6 +15,7 @@ class ManageUserOrders extends React.Component {
   }
 
   render() {
+
     const orders = this.props.adminOrders
 
     return(
@@ -22,6 +23,12 @@ class ManageUserOrders extends React.Component {
         <div className="constainer">
           <h2>Customer Orders</h2>
         </div>
+        <select onChange={this.props.handleChange} name="status">
+          <option value="All">All Orders</option>
+          <option value="active">Active</option>
+          <option value="pending">Pending</option>
+          <option value="complete">Complete</option>
+        </select>
         <Table bordered hover responsive striped >
               <thead>
                 <tr>
@@ -40,7 +47,7 @@ class ManageUserOrders extends React.Component {
                       <td>
                         <FormGroup controlId="formControlsSelect" bsSize="sm">
                           <FormControl defaultValue={order.status} data-id={order.id} componentClass="select" onChange={this.props.handleChange} name='status'>
-                              {['pending', 'complete'].map((status)=>{
+                              {['active', 'pending', 'complete'].map((status)=>{
                                 return <option
                                   key={status}
                                   value={status}>{status}
@@ -51,19 +58,18 @@ class ManageUserOrders extends React.Component {
                       </td>
                       <td>{order.name}</td>
                       <td>{order.street}, {order.city}, {order.state} {order.zip}</td>
-                      <td><Button
-                        bsSize='lg'
-                        onClick={this.props.handleOrderView}>
-                        <Glyphicon
-                          data-id={order.id}
-                          glyph='glyphicon glyphicon-eye-open'
-                        />
-                      </Button></td>
+                      <Link to={`/management/orders/${order.id}`}>
+                        <Button >
+                            <Glyphicon
+                              data-id={order.id}
+                              glyph='glyphicon glyphicon-eye-open'
+                            />
+                          </Button>
+                    </Link>
                   </tr>
                   )})}
            </tbody>
        </Table>
-
       </div>
     )
   }
@@ -79,6 +85,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     adminGetAllUserOrders(){
       dispatch(adminGetAllUserOrders())
+    },
+    handleChange(event){
+      if (event.target.value === 'All') return dispatch(adminGetAllUserOrders())
+      const status = {status: event.target.value}
+      dispatch(adminGetFilteredUserOrders(status))
     }
   }
 }

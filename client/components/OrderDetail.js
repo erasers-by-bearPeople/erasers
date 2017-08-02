@@ -101,8 +101,8 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch,ownProps) => {
-  console.log(ownProps.location.pathname)
+const mapDispatchToProps = (dispatch) => {
+
   return {
     fetchLineActive() {
       dispatch(fetchActiveUserOrder())
