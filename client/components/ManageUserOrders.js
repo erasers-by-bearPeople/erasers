@@ -27,7 +27,6 @@ class ManageUserOrders extends React.Component {
           <option value="active">Active</option>
           <option value="pending">Pending</option>
           <option value="complete">Complete</option>
-          <option value="cancelled">Cancelled</option>
         </select>
         <Table bordered hover responsive striped >
               <thead>
