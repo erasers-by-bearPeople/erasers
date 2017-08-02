@@ -90,61 +90,61 @@ const _products = [
     image: '/images/crayons.jpg'
   },
   {
-    title: 'MONO eraser',
+    title: 'MONO Eraser',
     description: `Subborn pencil marks on your page? Not with the MONO eraser around...those marks...they're so gone`,
     price: 275,
     category: 'Standard',
     inventory: 1000,
-    image: '/images/pinkSing.jpg'
+    image: '/images/whiteSing.jpg'
   }
 ]
 
 const _reviews = [
   {
-    title: 'review 1',
-    message: 'this is the first message',
+    title: 'My favorite erasers!',
+    message: 'Erases so good',
     userId: 1,
     rating: 5,
     productId: 1
   },
   {
-    title: 'review 2',
-    message: 'this is the second message',
+    title: 'The cutest',
+    message: `Who says you can't have fun and erase things at the same time?`,
     userId: 4,
-    rating: 2,
+    rating: 5,
     productId: 1
   },
   {
-    title: 'review 2',
-    message: 'this is the second message',
+    title: 'Love my erasers',
+    message: `there were pencil marks, then there weren't`,
     userId: 2,
     rating: 5,
     productId: 2
   },
   {
-    title: 'review 3',
-    message: 'this is the third message',
+    title: 'Solid',
+    message: 'What else can I say, they get the job done',
     userId: 3,
     rating: 5,
     productId: 3
   },
   {
-    title: 'review 4',
-    message: 'this is the fourth message',
+    title: `You won't regret it!`,
+    message: 'buy these things!',
     userId: 4,
     rating: 3,
     productId: 4
   },
   {
-    title: 'review 5',
-    message: 'this is the fifth message',
+    title: 'All bout erasers',
+    message: 'great addition to the collection',
     userId: 5,
     rating: 2,
     productId: 5
   },
   {
-    title: 'review 6',
-    message: 'this is the sixth message',
+    title: 'Best',
+    message: 'my kid raves about this eraser',
     userId: 6,
     rating: 1,
     productId: 6
@@ -157,34 +157,58 @@ const _orders = [
     userId: 1,
     name: 'Noor',
     email: 'noor.grewal@berkeley.edu',
+    city: 'Wooster',
+    street: '4844 Monroe Street',
+    state: 'AK',
+    zip: 72181
   },
   {
     status: 'active',
     userId: 2,
-    name: 'Noor',
-    email: 'noor.grewal@berkeley.edu',
+    name: 'Brad Johnson',
+    email: 'brad@email.com',
+    city: 'Chester',
+    street: '699 Laurens St',
+    state: 'GA',
+    zip: 31012
   },
   {
     status: 'pending',
     userId: 3,
-    name: 'Noor',
-    email: 'noor.grewal@berkeley.edu',
+    name: 'Jackie Smith',
+    email: 'jackie@email.com',
+    city: 'Chester',
+    street: '699 Laurens St',
+    state: 'GA',
+    zip: 31012
   },
   {
     status: 'complete',
-    name: 'Noor',
-    email: 'noor.grewal@berkeley.edu',
+    name: 'Edward Jones',
+    email: 'ed@email.com',
+    city: 'Booneville',
+    street: '200 County Rd #130',
+    state: 'MS',
+    zip: 38829
   },
   {
     status: 'complete',
     userId: 4,
-    name: 'Noor',
-    email: 'noor.grewal@berkeley.edu',
+    name: 'Aaron Snow',
+    email: 'aaron@email.com',
+    city: 'Crescent City',
+    street: '231 3rd St',
+    state: 'CA',
+    zip: 95531
   },
   {
     status: 'pending',
     name: 'Dennis',
     email: 'dennis@email.com',
+    city: 'Lenoir',
+    street: '7456 Falcon Ridge Rd',
+    state: 'NC',
+    zip: 28645
   }
 
 ]

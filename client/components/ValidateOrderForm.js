@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import validator from 'email-validator'
 
 export function theValidator (props) {

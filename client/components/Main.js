@@ -19,7 +19,7 @@ const Main = (props) => {
     <div>
 
       <Navbar />
-      <h1>Erasers!Erasers!Erasers!</h1>
+
 
       {children}
     </div>

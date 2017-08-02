@@ -27,7 +27,7 @@ export class SingleProduct extends Component {
               value={product.id}
               data-name={product.title}
               data-id={product.id}
-              onClick={this.props.handleOnClick}
+              onClick={()=>{return this.props.handleOnClick(product)}}
               style={{float: 'right'}}>
               Add To Cart
             </button>
@@ -35,7 +35,7 @@ export class SingleProduct extends Component {
           }
         </div>
         <div>
-          <img className='single-product-image img-circle' src={`${product.image}`}/>
+          <img className='single_product_image img-circle' src={`${product.image}`}/>
         </div>
         <div>
           {product.inventory > 0 ?
@@ -101,12 +101,15 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
     fetchSingleProduct(id) {
       dispatch(singleProduct(id))
     },
-    handleOnClick(event) {
-      event.preventDefault()
-      if (confirm(`Please confirm addition of ${event.target.dataset.name}`)) {
+    handleOnClick(product) {
+      const productR = {
+        price: product.price,
+        productId: product.id
+      }
+      if (confirm(`Please confirm addition of ${product.title}`)) {
         dispatch(makeUserOrder())
           .then(() => {
-            dispatch(addToOrder())
+            dispatch(addToOrder(productR))
             ownProps.history.push('/orderdetail')
           })
       }

@@ -5,7 +5,7 @@ import { fetchAccount} from '../store'
 
 export class FindUser extends React.Component {
   render () {
-    
+
     const account = this.props.account
 
     return (

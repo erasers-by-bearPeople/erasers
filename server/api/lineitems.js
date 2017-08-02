@@ -43,13 +43,26 @@ router.get('/item/:itemId', (req, res, next) => {
 
 // add a line item (post)
 router.post('/', (req, res, next) => {
-  const lineItem = {
-    price: req.session.product.price,
-    quantity: 1,
-    orderId: +req.session.order.id,
-    productId: +req.session.product.id
-  }
-  LineItem.create(lineItem)
+
+  // const lineItem = {
+  //   quantity: 1,
+  //   orderId: +req.session.order.id,
+  //
+  // }
+  //
+  // if(req.body){
+  //   lineItem.price = req.body.price
+  //   lineItem.productId = req.body.id
+  // }
+  //
+  // if(req.session.product){
+  //   lineItem.price = +req.session.product.price
+  //   lineItem.productId = +req.session.product.id
+  // }
+  req.body.quantity = 1
+  req.body.orderId = +req.session.order.id
+
+  LineItem.create(req.body)
     .then((created) => {
       return res.json(created)
     }).catch(next)
