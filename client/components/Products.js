@@ -27,7 +27,7 @@ class Products extends Component {
             <div className="row">
               {
                 products && products.map((product) => {
-                  let id = product.id
+
                   return (
                     <div className="col-md-4" key={product.id} style={{margin: 0 + 'em', paddingRight: 3 + 'em'}}>
                       <div>
@@ -45,8 +45,6 @@ class Products extends Component {
                                 style={{float: 'right'}}
                               />
                             </Button>
-
-                            {/* <button onClick={()=>{return this.props.addProductOnClick()}} className="btn btn-info" data-id={product.id} value={product.id} style={{float: 'right'}}>+</button> */}
                           </h3>
                         </div>
                       </div>
