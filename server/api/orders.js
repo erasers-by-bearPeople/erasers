@@ -66,6 +66,7 @@ router.put('/', (req, res, next) => {
   const id = req.session.order.id
   Order.update(req.body, {where: {id}, returning: true})
     .then(orderInfo => {
+
       let mailOptions = confEmail(orderInfo[1][0])
       //promisify if possible
       transporter.sendMail(mailOptions, (error, info) => {
@@ -86,13 +87,14 @@ router.post('/', (req, res, next) => {
     if(req.user){
       Order.update({userId: req.user.id},{where:{
         id: req.session.order.id
-      }}).then(order => res.json(order))
-        .catch(next)
-    }else{
+      }})
+      .then(order => res.json(order))
+      .catch(next)
+    } else {
       //non auth user gets the order ID an no post happens
       return res.json(req.session.order)
     }
-  }else{
+  } else {
     //if user logged in  new order ads DB
     if(req.user){
       req.body.userId = req.user.id
@@ -105,6 +107,8 @@ router.post('/', (req, res, next) => {
       .catch(next)
   }
 })
+
+
 
 router.delete('/:orderId', (req, res, next) => {
   req.order.destroy()

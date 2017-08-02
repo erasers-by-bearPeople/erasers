@@ -1,19 +1,14 @@
 import React from 'react'
-import { Link, withRouter  } from 'react-router-dom'
+import { withRouter  } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { changeUserOrder, fetchLineItems } from '../store'
-import {Table} from 'react-bootstrap'
+
 import  {states}  from '../../public/states'
+import OrderSummary from './OrderSummary'
 
 /* add order details to checkout*/
 class Checkout extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      userCheckout: {}
-    }
 
-  }
   componentDidMount() {
     this.props.fetchLineItems()
   }
@@ -21,12 +16,14 @@ class Checkout extends React.Component {
   render() {
 
     const props = this.props
+    const lineitems = this.props.lineitems
 
     let total = 0
     return (
       <div id='checkout'>
         <h1>Checkout</h1>
-        <form onSubmit={props.handleCheckout}>
+        <form onSubmit={props.handleCheckout
+          }>
           <div className="form-group">
             <label htmlFor="formName">Name</label>
             <input type="text" className="form-control" name="formName" placeholder="Enter full name" required />
@@ -55,39 +52,10 @@ class Checkout extends React.Component {
             <input type="text" className="form-control" name="formZip" placeholder="Enter zip code" required />
           </div>
 
-            <button type="submit" className="btn btn-primary" >Submit</button>
+            <button onClick={props.handleClick} type="submit" className="btn btn-primary" >Submit</button>
 
         </form>
-        <div>
-          <h4>Order Summary</h4>
-          <div>
-            <Table bordered hover responsive striped >
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Descritption</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                {props.lineitems.map(item => {
-                  //adding up total (have another function for this)
-                  total += item.price * item.quantity
-                  return (<tr key={item.id}>
-                    <td><img src={item.product.image} height='50px' /></td>
-                    <td>{item.product.title}</td>
-                    <td>{item.product.category}</td>
-                    <td>${item.price / 100}</td>
-                    <td>{item.quantity}</td>
-                  </tr>
-                  )})}
-              </tbody>
-            </Table>
-          </div>
-        </div>
+        <OrderSummary lineitems={lineitems} />
        </div>
     )
   }
@@ -95,7 +63,8 @@ class Checkout extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    lineitems: state.lineitems
+    lineitems: state.lineitems,
+    order: states.order
   }
 }
 
@@ -114,13 +83,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const status = 'pending'
       const orderDetails = { email, name, street, city, state, zip, status}
       dispatch(changeUserOrder(orderDetails))
-      .then(() => {
-        return ownProps.history.push('/confirmation')
-      })
+        .then(() => {
+          return ownProps.history.push('/confirmation')
+        })
+
     },
     fetchLineItems() {
       dispatch(fetchLineItems())
-    }
+    },
   }
 }
 

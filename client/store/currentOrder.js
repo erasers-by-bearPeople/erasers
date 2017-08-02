@@ -7,12 +7,10 @@ import axios from 'axios'
 */
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
-const CHANGE_ORDER = 'CHANGE_ORDER'
 const EMPTY_ORDER = 'EMPTY_ORDER'
 
 
 const createUserOrder = order => ({type: CREATE_ORDER, order})
-const updateUserOrder = order => ({type: CHANGE_ORDER, order})
 const getActiveUserOrder = order => ({type: GET_ACTIVE_ORDER, order})
 const emptyUserOrder = () => ({type: EMPTY_ORDER})
 /**
@@ -43,8 +41,8 @@ export const makeUserOrder = () =>
 export function changeUserOrder(order) {
   return function thunk (dispatch) {
     return axios.put('/api/orders', order)
-      .then(res => {
-        dispatch(updateUserOrder(res.data))
+      .then(()=> {
+        dispatch(emptyUserOrder())
       })
       .catch(err => {
         console.log(err)
@@ -55,8 +53,6 @@ export function changeUserOrder(order) {
 export default function (state = {}, action) {
   switch (action.type) {
   case CREATE_ORDER:
-    return action.order
-  case CHANGE_ORDER:
     return action.order
   case GET_ACTIVE_ORDER:
     return action.order

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
+import { Link } from 'react-router-dom'
 import { adminGetAllUserOrders } from '../store'
 import {Table, Button, Glyphicon, FormControl, FormGroup } from 'react-bootstrap'
 
@@ -39,7 +39,7 @@ class ManageUserOrders extends React.Component {
                       <td>{order.id}</td>
                       <td>
                         <FormGroup controlId="formControlsSelect" bsSize="sm">
-                          <FormControl defaultValue={order.status} data-id={order.id} componentClass="select" onChange={this.props.handleChange} name='status'>
+                          <FormControl defaultValue={order.status} data-id={order.id}     componentClass="select" onChange={this.props.handleChange} name='status'>
                               {['pending', 'complete'].map((status)=>{
                                 return <option
                                   key={status}
@@ -51,19 +51,18 @@ class ManageUserOrders extends React.Component {
                       </td>
                       <td>{order.name}</td>
                       <td>{order.street}, {order.city}, {order.state} {order.zip}</td>
-                      <td><Button
-                        bsSize='lg'
-                        onClick={this.props.handleOrderView}>
-                        <Glyphicon
-                          data-id={order.id}
-                          glyph='glyphicon glyphicon-eye-open'
-                        />
-                      </Button></td>
+                      <Link to={`/management/orders/${order.id}`}>
+                        <Button >
+                            <Glyphicon
+                              data-id={order.id}
+                              glyph='glyphicon glyphicon-eye-open'
+                            />
+                          </Button>
+                    </Link>
                   </tr>
                   )})}
            </tbody>
        </Table>
-
       </div>
     )
   }
@@ -79,7 +78,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     adminGetAllUserOrders(){
       dispatch(adminGetAllUserOrders())
-    }
+    },
+
   }
 }
 
