@@ -23,6 +23,14 @@ export const adminGetAllUserOrders = ()=>
       .then(res =>
         dispatch(adminGetUserOrders(res.data)))
       .catch(err => console.log(err))
+
+export const adminGetFilteredUserOrders = (status) =>
+  dispatch =>
+    axios.put('/api/orders/filter', status)
+      .then(res =>
+        dispatch(adminGetUserOrders(res.data)))
+      .catch(err => console.log(err))
+
 /**
 * REDUCER
 */

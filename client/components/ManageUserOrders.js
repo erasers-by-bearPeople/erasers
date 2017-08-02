@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { adminGetAllUserOrders, adminGetFilteredUserOrders } from '../store'
 import { Link } from 'react-router-dom'
-import { adminGetAllUserOrders } from '../store'
 import {Table, Button, Glyphicon, FormControl, FormGroup } from 'react-bootstrap'
 
 
@@ -15,6 +15,7 @@ class ManageUserOrders extends React.Component {
   }
 
   render() {
+
     const orders = this.props.adminOrders
 
     return(
@@ -22,6 +23,12 @@ class ManageUserOrders extends React.Component {
         <div className="constainer">
           <h2>Customer Orders</h2>
         </div>
+        <select onChange={this.props.handleChange} name="status">
+          <option value="All">All Orders</option>
+          <option value="active">Active</option>
+          <option value="pending">Pending</option>
+          <option value="complete">Complete</option>
+        </select>
         <Table bordered hover responsive striped >
               <thead>
                 <tr>
@@ -39,8 +46,8 @@ class ManageUserOrders extends React.Component {
                       <td>{order.id}</td>
                       <td>
                         <FormGroup controlId="formControlsSelect" bsSize="sm">
-                          <FormControl defaultValue={order.status} data-id={order.id}     componentClass="select" onChange={this.props.handleChange} name='status'>
-                              {['pending', 'complete'].map((status)=>{
+                          <FormControl defaultValue={order.status} data-id={order.id} componentClass="select" onChange={this.props.handleChange} name='status'>
+                              {['active', 'pending', 'complete'].map((status)=>{
                                 return <option
                                   key={status}
                                   value={status}>{status}
@@ -79,7 +86,11 @@ const mapDispatchToProps = (dispatch) => {
     adminGetAllUserOrders(){
       dispatch(adminGetAllUserOrders())
     },
-
+    handleChange(event){
+      if (event.target.value === 'All') return dispatch(adminGetAllUserOrders())
+      const status = {status: event.target.value}
+      dispatch(adminGetFilteredUserOrders(status))
+    }
   }
 }
 

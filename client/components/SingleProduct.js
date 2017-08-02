@@ -18,7 +18,7 @@ class SingleProduct extends Component {
     const reviews = this.props.reviews
 
     return (
-      <div id='single-product container col-md-12'>
+      <div className='single-product container col-md-12'>
         <div>
           <h4>{product.title}</h4>
           {product.inventory > 0 ?

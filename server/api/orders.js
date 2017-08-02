@@ -138,3 +138,11 @@ router.delete('/:orderId', (req, res, next) => {
     .then(() => res.sendStatus(204))
     .catch(next)
 })
+
+router.put('/filter', (req, res, next) => {
+  Order.findAll({where: {status: req.body.status}})
+  .then(filteredOrders => res.json(filteredOrders))
+  .catch(next)
+})
+
+
