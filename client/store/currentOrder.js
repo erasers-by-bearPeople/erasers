@@ -7,7 +7,6 @@ import axios from 'axios'
 */
 const CREATE_ORDER = 'CREATE_ORDER'
 const GET_ACTIVE_ORDER = 'GET_ACTIVE_ORDER'
-const CHANGE_ORDER = 'CHANGE_ORDER'
 const EMPTY_ORDER = 'EMPTY_ORDER'
 const UPDATE_ORDER_VALID = 'UPDATE_ORDER_VALID'
 
@@ -69,8 +68,6 @@ export function changeUserOrder(order) {
 export default function (state = {}, action) {
   switch (action.type) {
   case CREATE_ORDER:
-    return action.order
-  case CHANGE_ORDER:
     return action.order
   case GET_ACTIVE_ORDER:
     return action.order

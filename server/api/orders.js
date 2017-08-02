@@ -72,6 +72,7 @@ router.put('/', (req, res, next) => {
   const id = req.session.order.id
   Order.update(req.body, {where: {id}, returning: true})
     .then(orderInfo => {
+
       let mailOptions = confEmail(orderInfo[1][0])
       //promisify if possible
       //possible work but not sure on kills stuff

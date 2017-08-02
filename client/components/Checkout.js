@@ -3,18 +3,12 @@ import { withRouter  } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { changeUserOrder, fetchLineItems, fetchActiveUserOrder, validateUserOrderForm } from '../store'
 import {Table,FormGroup, FormControl, ControlLabel} from 'react-bootstrap'
-
 import  {states}  from '../../public/states'
+import OrderSummary from './OrderSummary'
 import {theValidator, orderButton } from './ValidateOrderForm'
 /* add order details to checkout*/
 class Checkout extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      userCheckout: {}
-    }
 
-  }
   componentDidMount() {
     this.props.fetchLineItems()
   }
@@ -33,6 +27,7 @@ class Checkout extends React.Component {
     if(this.props.order.zip === null){ zip = '' }else{ zip = this.props.order.zip}
     const props = this.props
     const {formNameValidation, formStreetValidation, formEmailValidation, formCityValidation, formZipValidation} = theValidator(props.order)
+    const lineitems = this.props.lineitems
 
     let total = 0
     return (
@@ -87,7 +82,6 @@ class Checkout extends React.Component {
               required
             />
           </FormGroup>
-
           <div className="form-group">
             <label htmlFor="formSelectState">State</label>
             <select className="form-control" name="formSelectState">{
@@ -95,7 +89,6 @@ class Checkout extends React.Component {
             }
             </select>
           </div>
-
           <FormGroup  validationState={formZipValidation}>
             <ControlLabel>Zip Code</ControlLabel>
             <FormControl
@@ -108,41 +101,10 @@ class Checkout extends React.Component {
               required
             />
           </FormGroup>
-
           {orderButton(formNameValidation,formStreetValidation,formEmailValidation,formCityValidation,formZipValidation)}
 
-
         </form>
-        <div>
-          <h4>Order Summary</h4>
-          <div>
-            <Table bordered hover responsive striped >
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Descritption</th>
-                  <th>Category</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                {props.lineitems.map(item => {
-                  //adding up total (have another function for this)
-                  total += item.price * item.quantity
-                  return (<tr key={item.id}>
-                    <td><img src={item.product.image} height='50px' /></td>
-                    <td>{item.product.title}</td>
-                    <td>{item.product.category}</td>
-                    <td>${item.price / 100}</td>
-                    <td>{item.quantity}</td>
-                  </tr>
-                  )})}
-              </tbody>
-            </Table>
-          </div>
-        </div>
+        <OrderSummary lineitems={lineitems} />
        </div>
     )
   }
