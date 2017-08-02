@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchAccount} from '../store'
 
-class FindUser extends React.Component {
+export class FindUser extends React.Component {
   render () {
 
     const account = this.props.account
@@ -32,13 +32,13 @@ class FindUser extends React.Component {
   }
 }
 
-const mapState = state => {
+export const mapState = state => {
   return ({
     account: state.account
   })
 }
 
-const mapDispatch = dispatch => {
+export const mapDispatch = dispatch => {
   return ({
     fetchSingleAccount(event) {
       event.preventDefault()

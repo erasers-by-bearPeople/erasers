@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 /**
  * COMPONENT
  */
-const UserHome = (props) => {
+export const UserHome = (props) => {
 
   const {user} = props
 
@@ -27,7 +27,7 @@ const UserHome = (props) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+export const mapState = (state) => {
   return {
     user: state.user
   }

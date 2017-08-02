@@ -7,7 +7,7 @@ import  {states}  from '../../public/states'
 import OrderSummary from './OrderSummary'
 import {theValidator, orderButton } from './ValidateOrderForm'
 /* add order details to checkout*/
-class Checkout extends React.Component {
+export class Checkout extends React.Component {
 
   componentDidMount() {
     this.props.fetchLineItems()
@@ -110,14 +110,14 @@ class Checkout extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     lineitems: state.lineitems,
     order: state.order
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
 
   return {
     handleCheckout(event) {

@@ -2,10 +2,10 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {singleProduct, makeUserOrder, addToOrder, getAllReviewsById} from '../store'
-import  {numAry}  from '../../public/states'
+import {numAry} from '../../public/states'
 
 
-class SingleProduct extends Component {
+export class SingleProduct extends Component {
 
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.productId)
@@ -39,10 +39,10 @@ class SingleProduct extends Component {
         </div>
         <div>
           {product.inventory > 0 ?
-          <p>
-            {product.description}
-          </p>
-          : <h2>Currently Unavailable</h2>
+            <p>
+              {product.description}
+            </p>
+            : <h2>Currently Unavailable</h2>
           }
         </div>
         <div>
@@ -88,7 +88,7 @@ class SingleProduct extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     product: state.product,
     reviews: state.review,
@@ -96,7 +96,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchSingleProduct(id) {
       dispatch(singleProduct(id))

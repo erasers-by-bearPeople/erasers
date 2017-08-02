@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {filterProductsByCategory, fetchProducts, singleProduct, makeUserOrder, addToOrder } from "../store";
 import {Button, Glyphicon} from 'react-bootstrap'
 
-class Products extends Component {
+export class Products extends Component {
 
   componentDidMount() {
     this.props.fetchAllProducts()
@@ -72,6 +72,7 @@ class Products extends Component {
                         />
                       </Link>
 
+
                       <label>Cost: ${product.price/100}</label>
                       { product.inventory > 0 ?
                         <p>In stock</p> :
@@ -100,8 +101,8 @@ class Products extends Component {
   }
 }
 
-const mapState = (state) => {
-  console.log('state', state)
+
+export const mapState = (state) => {
   return {
     products: state.products,
     product: state.product
