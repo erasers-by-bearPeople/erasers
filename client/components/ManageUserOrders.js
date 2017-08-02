@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { adminGetAllUserOrders, adminGetFilteredUserOrders } from '../store'
+import { Link } from 'react-router-dom'
 import {Table, Button, Glyphicon, FormControl, FormGroup } from 'react-bootstrap'
 
 
@@ -57,19 +58,18 @@ class ManageUserOrders extends React.Component {
                       </td>
                       <td>{order.name}</td>
                       <td>{order.street}, {order.city}, {order.state} {order.zip}</td>
-                      <td><Button
-                        bsSize='lg'
-                        onClick={this.props.handleOrderView}>
-                        <Glyphicon
-                          data-id={order.id}
-                          glyph='glyphicon glyphicon-eye-open'
-                        />
-                      </Button></td>
+                      <Link to={`/management/orders/${order.id}`}>
+                        <Button >
+                            <Glyphicon
+                              data-id={order.id}
+                              glyph='glyphicon glyphicon-eye-open'
+                            />
+                          </Button>
+                    </Link>
                   </tr>
                   )})}
            </tbody>
        </Table>
-
       </div>
     )
   }

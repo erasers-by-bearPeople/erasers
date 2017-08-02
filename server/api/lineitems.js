@@ -16,6 +16,18 @@ router.get('/', (req, res, next) => {
     }).catch(next)
 })
 
+//get lineitems for admin
+router.get('/:orderId', (req, res, next) => {
+  const orderId = +req.params.orderId
+  LineItem.findAll({
+    where: {orderId},
+    include:[Product]
+  })
+    .then(lineitem => {
+      return res.status(200).json(lineitem)
+    }).catch(next)
+})
+
 // get a line item by id
 router.get('/item/:itemId', (req, res, next) => {
   LineItem.findOne({
