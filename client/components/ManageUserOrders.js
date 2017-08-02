@@ -46,7 +46,7 @@ class ManageUserOrders extends React.Component {
                       <td>{order.id}</td>
                       <td>
                         <FormGroup controlId="formControlsSelect" bsSize="sm">
-                          <FormControl defaultValue={order.status} data-id={order.id} componentClass="select" onChange={this.props.handleChange} name='status'>
+                          <FormControl defaultValue={order.status} data-id={order.id} componentClass="select" name='status'>
                               {['active', 'pending', 'complete'].map((status)=>{
                                 return <option
                                   key={status}

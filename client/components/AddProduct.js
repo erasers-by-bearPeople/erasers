@@ -53,6 +53,7 @@ export class AddProduct extends React.Component {
               <h4>Images: </h4>
               <input
                 type="text"
+                defaultValue="/images/pinkSing.jpg"
                 placeholder="Image url"
                 name="image"
               />
@@ -70,7 +71,9 @@ export const mapState = state => {
   })
 }
 
-export const mapDispatch = dispatch => {
+
+const mapDispatch = (dispatch, ownProps) => {
+
   return ({
     handleSubmit (event) {
       event.preventDefault()
@@ -85,6 +88,7 @@ export const mapDispatch = dispatch => {
         image: event.target.image.value
       }
       dispatch(addProduct(newProduct))
+      ownProps.history.push('/account')
     }
   })
 }
