@@ -52,7 +52,7 @@ class Products extends Component {
 
                       <Link to={`/products/${product.id}`}>
                         <img src={product.image} className="products_image img-circle img-responsive img-center"
-                             style={{width: 10 + 'em', height: 10 + 'em', align: 'center'}}/>
+                             />
                       </Link>
 
                       <label>Cost: ${product.price/100}</label>

@@ -25,6 +25,18 @@ body {
   padding-bottom: 15px;
   }
 
+
+  .products_image {
+    width: 80%;
+    height: 80%;
+    align-content: center;
+  }
+   .single_product_image {
+    width: 50%;
+    height: 50%;
+    align-content: center;
+  }
+
   a {
     text-decoration: none;
   }
@@ -32,10 +44,7 @@ body {
   label {
     display: block;
   }
-  .products_image {
-  width: 300px;
-  height: 300px;
-  }
+
 
   nav a {
     display: inline-block;
@@ -48,15 +57,7 @@ body {
   }
 }
 
-.single-product-img .products_image {
-  width: 300px;
-  height: 300px;
-}
 
-#single-product {
-  width: 350px;
-  margin: 0 auto;
-}
 
 .formEmail, .formPassword, .formName {
   width: 500px;
