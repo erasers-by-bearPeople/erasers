@@ -1,12 +1,17 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {getAllReviewsById} from "../store/review";
+import {filterProductsByCategory, fetchProducts} from "../store";
 
 class Products extends Component {
 
+  componentDidMount() {
+    this.props.fetchAllProducts()
+  }
+
   render() {
     const products = this.props.products
+
     return (
       <div className="container">
         <div className="row">
@@ -15,10 +20,23 @@ class Products extends Component {
             {/*Refine by Category*/}
             <div className="col-lg-12">
               <label>Filter</label>
-              <select className="browser-default">
+              <select className="browser-default" onChange={(event) => this.props.handleChange(event)}>
                 <option value="" disabled defaultValue>Choose your option</option>
-                <option value="0">All</option>
+                <option value="">All</option>
+                <option value="Novelty">Novelty</option>
+                <option value="Standard">Standard</option>
               </select>
+            </div>
+
+            {/*Search By Category*/}
+            <div className="col-lg-12">
+            <form>
+              <input
+                type="text"
+                onChange={(event) => this.props.handleChange(event)}
+                placeholder="category name"
+                className="form-control"/>
+            </form>
             </div>
 
             {/*product listing*/}
@@ -31,7 +49,6 @@ class Products extends Component {
                         <div style={{textAlign: 'center'}}>
                           <h3>
                             {product.title}
-                            <button className="btn btn-info" value={product.id} style={{float: 'right'}}>+</button>
                           </h3>
                         </div>
                       </div>
@@ -46,7 +63,7 @@ class Products extends Component {
                       <p>
                         Rating:
                         {
-                          Array(product.rating).fill('filler').map((element, index) => {
+                          Array(5).fill('filler').map((element, index) => {
                             return (
                               <i className="glyphicon glyphicon-star" key={index}> </i>
                             )
@@ -66,17 +83,23 @@ class Products extends Component {
 }
 
 const mapState = (state) => {
+  console.log('state', state)
   return {
-    products: state.products
+    products: state.products,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchReviewsById(id) {
-      return dispatch(getAllReviewsById(id))
+  return ({
+    fetchAllProducts() {
+      dispatch(fetchProducts())
+    },
+    handleChange(event) {
+      event.preventDefault()
+      dispatch(fetchProducts())
+      dispatch(filterProductsByCategory(event.target.value))
     }
-  }
+  })
 }
 
 export default connect(mapState, mapDispatchToProps)(Products)
