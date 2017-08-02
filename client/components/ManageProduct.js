@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { editProduct, singleProduct } from '../store'
 
-class ManageProduct extends React.Component {
+export class ManageProduct extends React.Component {
 
   componentDidMount () {
     this.props.fetchSingleProduct(this.props.match.params.productId)
@@ -79,7 +79,7 @@ class ManageProduct extends React.Component {
   }
 }
 
-const mapState = state => {
+export const mapState = state => {
   return ({
     product: state.product
   })

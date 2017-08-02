@@ -26,10 +26,10 @@ const postProduct = product => {
   }
 }
 
-export const setFilter = filterId => {
+const filterProducts = (category) => {
   return {
     type: FILTER_PRODUCTS,
-    filterId: +filterId
+    category
   }
 }
 
@@ -38,7 +38,10 @@ export const setFilter = filterId => {
 export const fetchProducts = () => {
   return dispatch => {
     axios.get(`/api/products`)
-      .then(res => dispatch(getProducts(res.data)))
+      .then(res => {
+        console.log(res)
+        dispatch(getProducts(res.data))
+      })
       .catch(err => console.log(err))
   }
 }
@@ -51,15 +54,27 @@ export const addProduct = product => {
   }
 }
 
+export const filterProductsByCategory = (category) => {
+  return dispatch => {
+    axios.get(`/api/products`)
+      .then(() => dispatch(filterProducts(category)))
+      .catch(err => console.log(error))
+  }
+}
+
 /* ------------       REDUCERS     ------------------ */
 
 export default function (products = [], action) {
   switch (action.type) {
-  case GET_PRODUCTS:
-    return action.products
-  case ADD_PRODUCT:
-    return [...products, action.product]
-  default:
-    return products
+    case GET_PRODUCTS:
+      return action.products
+    case ADD_PRODUCT:
+      return [...products, action.product]
+    case FILTER_PRODUCTS:
+      return products.filter((product) => {
+        return product.category === action.category
+      })
+    default:
+      return products
   }
 }
