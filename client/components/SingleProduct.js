@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {singleProduct, makeUserOrder, addToOrder, getAllReviewsById} from '../store'
-import  {numAry}  from '../../public/states'
+import {numAry} from '../../public/states'
 
 
 class SingleProduct extends Component {
@@ -21,33 +21,42 @@ class SingleProduct extends Component {
       <div className='single-product container col-md-12'>
         <div>
           <h4>{product.title}</h4>
-          {product.inventory > 0 ?
-            <button
-              className='btn btn-info'
-              value={product.id}
-              data-name={product.title}
-              data-id={product.id}
-              onClick={this.props.handleOnClick}
-              style={{float: 'right'}}>
-              Add To Cart
-            </button>
-            : null
-          }
+          <div>
+            {product.inventory > 0 ?
+              <button
+                className='btn btn-info'
+                value={product.id}
+                data-name={product.title}
+                data-id={product.id}
+                onClick={this.props.handleOnClick}
+                style={{float: 'right'}}>
+                Add To Cart
+              </button>
+              : null
+            }
+          </div>
+          <div>
+            <Link to={`/reviews/${product.id}`}>Add Review</Link>
+          </div>
         </div>
         <div>
-          <img className='single-product-image img-circle' src={`${product.image}`}/>
+          <img className='single-product-image img-circle' src={`${product.image}`}
+               style={{width: 10 + 'em', height: 10 + 'em'}}/>
         </div>
+
         <div>
           {product.inventory > 0 ?
-          <p>
-            {product.description}
-          </p>
-          : <h2>Currently Unavailable</h2>
+            <p>
+              {product.description}
+            </p>
+            : <h2>Currently Unavailable</h2>
           }
         </div>
+
         <div>
           <label>Cost: ${product.price / 100}</label>
         </div>
+
         <div>
           <label>Qty</label>
           <select id={product.id}>
@@ -58,6 +67,7 @@ class SingleProduct extends Component {
             }
           </select>
         </div>
+
         <div>
           <label>Reviews: </label>
           {
@@ -65,26 +75,35 @@ class SingleProduct extends Component {
               return (
                 <div key={index}>
                   <p>
+                    {index + 1}
+                  </p>
+                  <p>
                     {review.message}
+                  </p>
+                  <p>
+                    Rating:
+                    {
+                      Array(review.rating).fill('filler').map((element, index) => {
+                        return (
+                          <i className="glyphicon glyphicon-star" key={index}> </i>
+                        )
+                      })
+                    }
                   </p>
                 </div>
               )
             })
           }
         </div>
+
         {this.props.isAdmin ?
           <div>
             <Link to={`/management/products/${product.id}`}><h3>Edit Product</h3></Link>
           </div>
           : null
         }
-        <div>
-          <Link to={`/reviews/${product.id}`}>Add Review</Link>
-        </div>
       </div>
-
     )
-
   }
 }
 
