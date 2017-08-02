@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.put('/:userId', (req, res, next) => {
-  const id = +req.params.userId
+  const id = +req.body.id
   User.update(req.body, {where: {id}, returning: true, individualHooks: true})
     .then(updatedUser => res.json(updatedUser[1][0]))
     .catch(next)
