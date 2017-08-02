@@ -30,8 +30,8 @@ router.post('/', (req, res, next) => {
 
 router.put('/:userId', (req, res, next) => {
   const id = +req.params.userId
-  User.update(req.body, {where: {id}, returning: true})
-    .then(updatedUser => res.json(updatedUser))
+  User.update(req.body, {where: {id}, returning: true, individualHooks: true})
+    .then(updatedUser => res.json(updatedUser[1][0]))
     .catch(next)
 })
 

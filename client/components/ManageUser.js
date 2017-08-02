@@ -65,10 +65,13 @@ class ManageUser extends React.Component {
           }
           <button className="btn btn-primary" type="submit">Submit</button>
         </form>
-        <div>
-          <h4>Delete Account</h4>
-          <button onClick={(event) => deleteAccount(account, event)}>DELETE</button>
-        </div>
+        {isAdmin ?
+          <div>
+            <h4>Delete Account</h4>
+            <button onClick={(event) => deleteAccount(account, event)}>DELETE</button>
+          </div>
+          : null
+        }
       </div>
     )
   }

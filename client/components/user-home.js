@@ -16,7 +16,7 @@ const UserHome = (props) => {
       {
         user.changePassword ? 
         <div>
-          <Link to={`/management/user/${user.id}`}><h2>Must Change Password! Click on Link!></h2></Link>
+          <Link to={`/user/${user.id}/password`}><h2>Must Change Password! Click on Link!></h2></Link>
         </div>
         : null
       }
