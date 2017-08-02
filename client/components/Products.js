@@ -91,10 +91,13 @@ const mapDispatchToProps = (dispatch,ownProps) => {
       return dispatch(getAllReviewsById(id))
     },
     addProductOnClick(product){
-      event.preventDefault()
+      const productR = {
+        price: product.price,
+        productId: product.id
+      }
       dispatch(makeUserOrder())
         .then(() => {
-          dispatch(addToOrder(product))
+          dispatch(addToOrder(productR))
           ownProps.history.push('/orderdetail')
         })
       //console.log(product)
