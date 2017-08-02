@@ -31,7 +31,12 @@ class Navbar extends React.Component {
                 <Link to="/signup"><h4>Sign Up</h4></Link>
               </div>
           }
-        </div>
+          <div className="navbar-right">
+              <Link to="/orderdetail">
+                <div style={{fontSize: '30px'}} className="glyphicon glyphicon-shopping-cart"></div>
+              </Link>
+            </div>
+          </div>
       </nav>
     )
   }
@@ -57,3 +62,5 @@ const mapDispatch = dispatch => {
 }
 
 export default connect(mapState, mapDispatch)(Navbar)
+
+
