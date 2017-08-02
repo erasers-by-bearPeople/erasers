@@ -11,6 +11,7 @@ class Products extends Component {
     const products = this.props.products
     return (
       <div className="container">
+      <h1 className="productsTitle">Erasers!Erasers!Erasers!</h1>
         <div className="row">
           <div className="row">
 
@@ -51,13 +52,17 @@ class Products extends Component {
 
                       <Link to={`/products/${product.id}`}>
                         <img src={product.image} className="products_image img-circle img-responsive img-center"
-                             style={{width: 10 + 'em', height: 10 + 'em', align: 'center'}}/>
+                             />
                       </Link>
 
-                      <label>Cost: ${product.price}</label>
-                      <p>In stock: {product.inventory}</p>
+                      <label>Cost: ${product.price/100}</label>
+                      { product.inventory > 0 ?
+                         <p>In stock</p> :
+                         <p>Out of stock</p>
+                      }
+
                       <p>
-                        Rating:
+                        Reviews:
                         {
                           Array(product.rating).fill('filler').map((element, index) => {
                             return (

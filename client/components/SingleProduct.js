@@ -35,7 +35,7 @@ class SingleProduct extends Component {
           }
         </div>
         <div>
-          <img className='single-product-image img-circle' src={`${product.image}`}/>
+          <img className='single_product_image img-circle' src={`${product.image}`}/>
         </div>
         <div>
           {product.inventory > 0 ?
