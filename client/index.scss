@@ -27,14 +27,18 @@ body {
 
 
   .products_image {
-    width: 80%;
-    height: 80%;
+    width: 10em;
+    height: 10em;
     align-content: center;
   }
    .single_product_image {
     width: 50%;
     height: 50%;
     align-content: center;
+  }
+
+  .product_listing {
+    display: inline-block
   }
 
   a {

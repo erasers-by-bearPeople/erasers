@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {filterProductsByCategory, fetchProducts, singleProduct, makeUserOrder, addToOrder } from "../store";
-import {Button, Glyphicon} from 'react-bootstrap'
+import {filterProductsByCategory, fetchProducts, makeUserOrder, addToOrder } from "../store";
+import {Button} from 'react-bootstrap'
 
 export class Products extends Component {
 
@@ -17,6 +17,7 @@ export class Products extends Component {
       <div className="container">
         <h1 className="productsTitle">Erasers!Erasers!Erasers!</h1>
         <div className="row">
+
           <div className="row">
 
             {/*Refine by Category*/}
@@ -31,7 +32,7 @@ export class Products extends Component {
             </div>
 
             {/*Search By Category*/}
-            <div className="col-lg-12">
+            <div className="col-lg-2">
               <form>
                 <input
                   type="text"
@@ -40,9 +41,10 @@ export class Products extends Component {
                 className="form-control"/>
               </form>
             </div>
-
+          </div>
             {/*product listing*/}
-            <div className="row">
+
+            <div className="row prodcuct_listing">
               {
                 products && products.map((product) => {
 
@@ -52,18 +54,14 @@ export class Products extends Component {
                         <div style={{textAlign: 'center'}}>
                           <h3>
                             {product.title}
-
-                            <Button
-                              bsSize='large'
-                              onClick={()=>{return this.props.addProductOnClick(product)}}>
-                              <Glyphicon
-                                data-title={product.title}
-                                data-id={product.id}
-                                glyph='glyphicon glyphicon-plus'
-                                style={{float: 'right'}}
-                              />
-                            </Button>
                           </h3>
+                            <Button
+                              className='btn btn-info'
+                              bsSize='sm'
+
+                              onClick={()=>{return this.props.addProductOnClick(product)}}>Add To Cart
+                            </Button>
+
                         </div>
                       </div>
 
@@ -94,7 +92,6 @@ export class Products extends Component {
                 })
               }
             </div>
-          </div>
         </div>
       </div>
     )
