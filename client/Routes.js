@@ -50,6 +50,8 @@ class Routes extends Component {
                     <Route path="/home" component={UserHome} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/account" component={UserAccount} />
+                    {/* tk: there's no need to duplicate some of these routes - logged in users also get
+                      the routes that all visitors get */}
                     <Route exact path="/management/products/:productId" component={ManageProduct} />
                     <Route exact path="/management/products" component={AddProduct} />
                     <Route exact path="/management/user/:userId" component={ManageUser} />

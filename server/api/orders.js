@@ -138,6 +138,7 @@ router.delete('/:orderId', (req, res, next) => {
     .catch(next)
 })
 
+// tk: this should just be baked into the / route
 router.put('/filter', (req, res, next) => {
   Order.findAll({where: {status: req.body.status}})
   .then(filteredOrders => res.json(filteredOrders))
