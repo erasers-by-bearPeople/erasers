@@ -36,14 +36,11 @@
 
 * There are inconsistencies between the way that you add products to the cart from the single product page and from the all-products page. If you make that button its own component, or completely encapsulate the entirety of that functionality into a thunk, you'll have all of the functionality in one place
 
-## UI/Usability
-
-* There are some really nice UX touches - I really like that you ask users to confirm before removing things from the cart.
-
 ## Security
 
 * Your routes are still insecure - there's no validation middleware to ensure that a non-logged in user can't just fly in see everyone's orders. Be sure to review how to write this kind of middleware from the talk that we had last Wednsday: https://youtu.be/1wIfeqgiHss
 
-## Design/visual appeal
+## Design/UI/Usability
 
 * Lookin' good! Try adding some margin and padding around some buttons and form elements to give them a little bit more breathing room.
+* There are some really nice UX touches - I really like that you ask users to confirm before removing things from the cart.
