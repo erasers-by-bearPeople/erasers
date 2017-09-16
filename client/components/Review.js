@@ -35,7 +35,9 @@ export class Review extends Component {
             placeholder="Review Rating"
             name="rating"
           />
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button
+          onSubmit={this.props.handleSubmit}
+          type="submit" className="btn btn-primary">Submit</button>
         </form>
       </div>
     )
@@ -49,14 +51,14 @@ export const mapState = (state) => {
   })
 }
 
-export const mapDispatch = (dispatch) => {
+export const mapDispatch = (dispatch, ownProps) => {
   return ({
     fetchProduct(id) {
       dispatch(singleProduct(id))
     },
     handleSubmit(product, user, event) {
       event.preventDefault()
-      if (event.target.message.value.length < 10) return
+      if (event.target.message.value.length < 20) return
       const newReview = {
         title: event.target.title.value,
         message: event.target.message.value,
@@ -65,6 +67,9 @@ export const mapDispatch = (dispatch) => {
         userId: +user.id
       }
       dispatch(addReviewById(newReview))
+        .then(() => {
+          return ownProps.history.push(`/products/${product.id}`)
+        })
     }
   })
 }

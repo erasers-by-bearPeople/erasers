@@ -13,8 +13,11 @@ export const UserHome = (props) => {
   return (
     <div>
       <h3>Welcome, {user.email}</h3>
+      <Link to={'/products'} >
+        <button type="submit" className="btn btn-primary" >To Products</button>
+      </Link>
       {
-        user.changePassword ? 
+        user.changePassword ?
         <div>
           <Link to={`/user/${user.id}/password`}><h2>Must Change Password! Click on Link!></h2></Link>
         </div>
